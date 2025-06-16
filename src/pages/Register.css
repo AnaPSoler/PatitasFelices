@@ -1,0 +1,21 @@
+.form-container {
+  max-width: 400px;
+  margin: auto;
+  padding-top: 60px;
+}
+
+.form-card {
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  border: none;
+}
+
+.titulo {
+  color: #00bcd4;
+  font-family: 'Segoe UI Variable Semi Bold Display', sans-serif;
+}
+
+.contenido {
+  color: #606060;
+  font-family: 'Segoe UI Variable Regular', sans-serif;
+}

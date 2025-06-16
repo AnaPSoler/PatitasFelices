@@ -1,0 +1,134 @@
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.full-width-carousel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.carousel-img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay-content {
+  position: absolute;
+  top: 45%;
+  left: 10%;
+  transform: translateY(-50%);
+  z-index: 3;
+  text-align: left;
+  max-width: 550px;
+}
+
+.hero-title {
+  font-size: 3.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  line-height: normal;
+}
+
+.hero-title-part1,
+.hero-title-part2 {
+  display: block;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.hero-title-part1 {
+  margin-bottom: 0.1rem;
+  font-family: "Segoe UI Variable Regular", "Segoe UI", sans-serif;
+}
+
+.hero-title-part2 {
+  font-family: "Segoe UI Variable Display Semibold", "Segoe UI", sans-serif;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: #000000;
+  font-family: "Segoe UI Variable Regular", "Segoe UI", sans-serif;
+  margin-bottom: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.hero-button {
+  background-color: #00bcd4 !important;
+  border: none !important;
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white !important;
+  font-weight: 500;
+}
+
+.hero-button:hover {
+  background-color: #ffc107 !important;
+  color: #606060 !important;
+}
+
+.weather-widget-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 4;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  border-radius: 8px;
+  color: #333;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.weather-emoji {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 60vh;
+  }
+
+  .hero-overlay-content {
+    left: 5%;
+    right: 5%;
+    max-width: none;
+    text-align: center;
+    top: 50%;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .hero-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  .weather-widget-container {
+    top: 10px;
+    right: 10px;
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
