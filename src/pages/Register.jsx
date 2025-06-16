@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form, Button, Container, Card } from "react-bootstrap";
 import Swal from "sweetalert2";
 import axios from "axios";
-import "./Register.css"; // 🟢 ahora con el CSS local correcto
+import "./Register.css"; 
 
 const Register = () => {
   const [form, setForm] = useState({

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form, Button, Container, Card } from "react-bootstrap";
 import Swal from "sweetalert2";
 import axios from "axios";
-import "./Login.css"; // 🟢 nuevo import con estructura correcta
+import "./Login.css"; 
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
