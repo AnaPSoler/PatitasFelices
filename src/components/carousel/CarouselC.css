@@ -175,3 +175,60 @@
   }
 }
 
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 1.7rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+  }
+
+  .hero-button {
+    font-size: 0.85rem;
+    padding: 8px 18px;
+    align-self: center;
+  }
+
+  .hero-overlay-content {
+    top: 48%;
+    padding: 0 10px;
+  }
+
+  .weather-widget-container {
+    font-size: 0.8rem;
+    padding: 6px;
+    top: 8px;
+    right: 8px;
+  }
+}
+
+@media (max-width: 375px) {
+  .hero-title {
+    font-size: 1.4rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.8rem;
+    padding: 0 8px;
+    text-align: center;
+  }
+
+  .hero-button {
+    font-size: 0.75rem;
+    padding: 7px 16px;
+  }
+
+  .hero-overlay-content {
+    top: 50%;
+    padding: 0 8px;
+  }
+
+  .weather-widget-container {
+    font-size: 0.75rem;
+    padding: 5px;
+  }
+}
