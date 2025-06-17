@@ -1,0 +1,116 @@
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #606060;
+  margin-bottom: 1rem;
+}
+
+.section-title-part1 {
+  color: #00bcd4;
+}
+
+.section-title-part2 {
+  color: #606060;
+}
+
+.section-description {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #606060;
+  margin-bottom: 3rem;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.service-card {
+  border: none !important;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  padding: 30px 20px;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-icon-container {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.service-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.service-card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #606060;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.service-card-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #606060;
+  flex-grow: 1;
+}
+
+.service-button {
+  background-color: #00bcd4 !important;
+  border-color: #00bcd4 !important;
+  color: #ffffff !important;
+  padding: 10px 30px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.service-button:hover {
+  background-color: #ffc107 !important;
+  border-color: #ffc107 !important;
+  color: #606060 !important;
+}
+
+.container.my-3 {
+  margin-top: 1rem !important;
+  margin-bottom: 0rem !important;
+}
+
+.container.my-5 {
+  margin-top: 1rem !important;
+  margin-bottom: 2rem !important;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  .section-description {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  .card-icon-container {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 15px;
+  }
+  .service-card-title {
+    font-size: 1.2rem;
+  }
+  .service-card-description {
+    font-size: 1rem;
+  }
+}
