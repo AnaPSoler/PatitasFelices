@@ -1,0 +1,130 @@
+.plans-section-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+}
+
+.plans-title-part1 {
+  color: #00bcd4;
+}
+
+.plans-title-part2 {
+  color: #606060;
+}
+
+.plan-card {
+  border: none !important;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  max-width: 350px; 
+  margin-left: auto; 
+  margin-right: auto; 
+}
+
+.plan-icon-container {
+  background-color: transparent;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.plan-icon-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.plan-stage-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #606060;
+  margin-bottom: 0;
+}
+
+.plan-age-range {
+  font-size: 1rem;
+  color: #606060;
+  margin-bottom: 15px;
+}
+
+.plan-card-body {
+  padding: 20px;
+}
+
+.plan-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.plan-features-list li {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #606060;
+  position: relative;
+  padding-left: 25px;
+}
+
+.plan-features-list li::before {
+  content: '✓';
+  color: #00bcd4;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.plan-card-1 .plan-card-body {
+  background-color: #fffaec;
+}
+
+.plan-card-2 .plan-card-body {
+  background-color: #f5f5f5;
+}
+
+.plan-card-3 .plan-card-body {
+  background-color: #ebfafc;
+}
+
+@media (max-width: 768px) {
+  .plans-section-title {
+    font-size: 2rem;
+  }
+  .plan-icon-img {
+    width: 80px;
+    height: 80px;
+  }
+  .plan-stage-title {
+    font-size: 1.2rem;
+  }
+  .plan-age-range {
+    font-size: 0.9rem;
+  }
+  .plan-features-list li {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .plans-section-title {
+    font-size: 1.8rem;
+  }
+  .plan-icon-img {
+    width: 70px;
+    height: 70px;
+  }
+  .plan-stage-title {
+    font-size: 1.1rem;
+  }
+  .plan-age-range {
+    font-size: 0.85rem;
+  }
+  .plan-features-list li {
+    font-size: 0.9rem;
+  }
+}

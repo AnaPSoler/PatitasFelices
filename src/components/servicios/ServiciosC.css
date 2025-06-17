@@ -1,5 +1,5 @@
 .section-title {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: #606060;
   margin-bottom: 1rem;
@@ -14,11 +14,11 @@
 }
 
 .section-description {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   line-height: 1.7;
   color: #606060;
   margin-bottom: 3rem;
-  max-width: 100%;
+  max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -89,7 +89,7 @@
   margin-bottom: 0rem !important;
 }
 
-.container.my-5 {
+.services-container {
   margin-top: 1rem !important;
   margin-bottom: 2rem !important;
 }
@@ -99,7 +99,7 @@
     font-size: 2rem;
   }
   .section-description {
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-bottom: 2rem;
   }
   .card-icon-container {
