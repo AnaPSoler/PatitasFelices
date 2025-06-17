@@ -1,5 +1,5 @@
 .section-title {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: #606060;
   margin-bottom: 1rem;
@@ -14,11 +14,11 @@
 }
 
 .section-description {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   line-height: 1.7;
   color: #606060;
   margin-bottom: 3rem;
-  max-width: 100%;
+  max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -99,7 +99,7 @@
   padding-right: var(--bs-gutter-x, 0.75rem);
 }
 
-.container.my-5 {
+.services-container {
   margin-top: 1rem !important;
   margin-bottom: 2rem !important;
   padding-left: var(--bs-gutter-x, 0.75rem);
@@ -121,7 +121,7 @@
     font-size: 2rem;
   }
   .section-description {
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-bottom: 2rem;
   }
   .card-icon-container {
@@ -135,28 +135,5 @@
   .service-card-description {
     font-size: 1rem;
   }
-  .service-button {
-    font-size: 1rem;
-    padding: 13px 32px !important;
-    min-width: unset;
-    width: auto;
-    max-width: 100%;
-    display: inline-block;
-  }
 }
 
-@media (max-width: 576px) {
-  .service-card {
-    padding: 20px 15px;
-    margin-bottom: 15px;
-  }
-  .service-card-title {
-    font-size: 1.1rem;
-  }
-  .service-card-description {
-    font-size: 0.95rem;
-  }
-  .section-description {
-    padding: 0 10px;
-  }
-}

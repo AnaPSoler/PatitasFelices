@@ -4,7 +4,7 @@
 }
 
 .products-section-title {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: #606060;
   margin-bottom: 0.5rem;
@@ -88,7 +88,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 120px; /* ancho fijo para las imágenes en móviles */
+  width: 120px;
 }
 
 .product-img {
@@ -103,21 +103,16 @@
   transform: scale(1.1);
 }
 
-/* --------------------- AJUSTES PARA MEDIANOS Y GRANDES --------------------- */
-
 @media (min-width: 768px) {
   .products-images-row {
-    flex-wrap: nowrap; /* que no se envuelvan */
-    justify-content: flex-start; /* imágenes al principio, no centradas */
-    overflow-x: visible; /* sin scroll horizontal */
+    flex-wrap: nowrap; 
+    justify-content: flex-start; 
+    overflow-x: visible; /
   }
   .product-img-col {
-    width: 33.3333%; /* dividir en 3 columnas iguales */
+    width: 33.3333%; 
   }
 }
-
-/* Ajustes generales para texto y columnas */
-
 @media (max-width: 991px) {
   .products-section-content .row {
     flex-direction: column;
