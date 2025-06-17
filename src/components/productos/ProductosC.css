@@ -147,3 +147,15 @@
     display: inline-block;
   }
 }
+
+@media (max-width: 375px) {
+  .product-img-col {
+    width: 100px;
+  }
+}
+
+@media (max-width: 320px) {
+  .product-img-col {
+    width: 90px;
+  }
+}
