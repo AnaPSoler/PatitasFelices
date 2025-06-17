@@ -88,7 +88,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 120px; /
+  width: 120px;
 }
 
 .product-img {
@@ -113,7 +113,6 @@
     width: 33.3333%; 
   }
 }
-
 @media (max-width: 991px) {
   .products-section-content .row {
     flex-direction: column;
