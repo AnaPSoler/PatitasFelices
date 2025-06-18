@@ -11,7 +11,7 @@ html, body {
 }
 
 .publicidad-section {
-  width: 100vw;
+  width: 100%; 
   position: relative;
   overflow: hidden;
   min-height: 100px;
