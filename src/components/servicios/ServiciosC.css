@@ -71,11 +71,13 @@
   background-color: #00bcd4 !important;
   border-color: #00bcd4 !important;
   color: #ffffff !important;
-  padding: 10px 30px;
+  padding: 13px 32px !important;
   border-radius: 5px;
   font-size: 1rem;
   font-weight: 600;
   transition: background-color 0.3s ease, color 0.3s ease;
+  min-width: 200px;
+  display: inline-block;
 }
 
 .service-button:hover {
@@ -113,31 +115,9 @@
   .service-card-description {
     font-size: 1rem;
   }
-}
-
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 2rem;
-    margin-top: 3rem; 
-  }
-
-  .section-description {
+  .service-button {
+    padding: 10px 20px !important;
     font-size: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .card-icon-container {
-    width: 90px;
-    height: 90px;
-    margin-bottom: 15px;
-  }
-
-  .service-card-title {
-    font-size: 1.2rem;
-  }
-
-  .service-card-description {
-    font-size: 1rem;
+    min-width: 160px;
   }
 }
-
