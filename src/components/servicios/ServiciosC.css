@@ -22,7 +22,6 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  padding: 0 15px;
 }
 
 .service-card {
@@ -36,9 +35,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
-  width: 100%;
-  box-sizing: border-box;
 }
 
 .card-icon-container {
@@ -75,15 +71,11 @@
   background-color: #00bcd4 !important;
   border-color: #00bcd4 !important;
   color: #ffffff !important;
-  padding: 13px 32px !important;
+  padding: 10px 30px;
   border-radius: 5px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   transition: background-color 0.3s ease, color 0.3s ease;
-  min-width: 200px;
-  display: inline-block;
-  width: auto;
-  max-width: 100%;
 }
 
 .service-button:hover {
@@ -95,25 +87,11 @@
 .container.my-3 {
   margin-top: 1rem !important;
   margin-bottom: 0rem !important;
-  padding-left: var(--bs-gutter-x, 0.75rem);
-  padding-right: var(--bs-gutter-x, 0.75rem);
 }
 
 .services-container {
   margin-top: 1rem !important;
   margin-bottom: 2rem !important;
-  padding-left: var(--bs-gutter-x, 0.75rem);
-  padding-right: var(--bs-gutter-x, 0.75rem);
-}
-
-.row {
-  margin-left: calc(var(--bs-gutter-x) * -.5);
-  margin-right: calc(var(--bs-gutter-x) * -.5);
-}
-
-.col, .col-sm-*, .col-md-*, .col-lg-*, .col-xl-*, .col-xxl-* {
-  padding-left: var(--bs-gutter-x, 0.75rem);
-  padding-right: var(--bs-gutter-x, 0.75rem);
 }
 
 @media (max-width: 768px) {
@@ -132,6 +110,32 @@
   .service-card-title {
     font-size: 1.2rem;
   }
+  .service-card-description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+    margin-top: 3rem; 
+  }
+
+  .section-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .card-icon-container {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 15px;
+  }
+
+  .service-card-title {
+    font-size: 1.2rem;
+  }
+
   .service-card-description {
     font-size: 1rem;
   }
