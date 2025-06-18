@@ -35,6 +35,7 @@ const carouselData = [
 const CarouselC = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [loadingWeather, setLoadingWeather] = useState(true);
+  // LA ÚNICA LÍNEA QUE DEBE EXISTIR PARA weatherError ES ESTA:
   const [weatherError, setWeatherError] = useState(false);
 
   useEffect(() => {
@@ -136,7 +137,7 @@ const CarouselC = () => {
                   <Col
                     xs={12}
                     md={8}
-                    className="text-center text-md-start d-flex flex-column justify-content-center align-items-center align-items-md-start"
+                    className="text-start text-md-start d-flex flex-column justify-content-center align-items-start align-items-md-start"
                   >
                     <h1 className="hero-title mb-2">
                       <span
