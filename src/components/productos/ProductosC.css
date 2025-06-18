@@ -159,3 +159,30 @@
     width: 90px;
   }
 }
+
+@media (max-width: 767px) {
+  .products-images-row {
+    max-width: 100%;
+    overflow-x: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+  }
+
+  .product-img-col {
+    flex: 0 0 auto;
+    max-width: 100px;
+  }
+}
+
+@media (max-width: 375px) {
+  .product-img-col {
+    max-width: 90px;
+  }
+}
+
+@media (max-width: 320px) {
+  .product-img-col {
+    max-width: 80px;
+  }
+}
