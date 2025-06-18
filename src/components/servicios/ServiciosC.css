@@ -75,15 +75,13 @@
   background-color: #00bcd4 !important;
   border-color: #00bcd4 !important;
   color: #ffffff !important;
-  padding: 13px 32px !important;
+  padding: 13px 28px !important;
   border-radius: 5px;
   font-size: 1.1rem;
   font-weight: 600;
   transition: background-color 0.3s ease, color 0.3s ease;
   min-width: 200px;
   display: inline-block;
-  width: auto;
-  max-width: 100%;
 }
 
 .service-button:hover {
@@ -135,5 +133,9 @@
   .service-card-description {
     font-size: 1rem;
   }
+  .service-button {
+    padding: 10px 20px !important;
+    font-size: 1rem;
+    min-width: 160px;
+  }
 }
-
