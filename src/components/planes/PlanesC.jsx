@@ -31,9 +31,9 @@ const PlanesC = () => {
                 <li>Educación temprana</li>
               </ul>
               <Button
-                variant="link"
                 href="#"
                 className="plan-more-info-btn mt-auto"
+                type="button"
               >
                 Ver más
               </Button>
@@ -63,9 +63,9 @@ const PlanesC = () => {
                 <li>Esterilización/Castración</li>
               </ul>
               <Button
-                variant="link"
                 href="#"
                 className="plan-more-info-btn mt-auto"
+                type="button"
               >
                 Ver más
               </Button>
@@ -95,9 +95,9 @@ const PlanesC = () => {
                 <li>Adaptación del entorno</li>
               </ul>
               <Button
-                variant="link"
                 href="#"
                 className="plan-more-info-btn mt-auto"
+                type="button"
               >
                 Ver más
               </Button>
