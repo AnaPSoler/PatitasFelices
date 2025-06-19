@@ -1,8 +1,5 @@
 import React from "react";
-import Carousel from "react-bootstrap/Carousel";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Container, Row, Col, Carousel } from "react-bootstrap";
 import "./TestimoniosC.css";
 
 const testimonialsData = [
@@ -16,16 +13,16 @@ const testimonialsData = [
   {
     image: "/img/tt2.png",
     quote:
-      "Llevamos años trayendo a nuestro gato Max a Patitas Felices y siempre recibimos el mejor trato. Son muy cuidadosos y explican todo con claridad. ¡Un equipo excepcional!",
+      "Llevamos años trayendo a nuestro gato Simba a Patitas Felices y siempre recibimos el mejor trato. Son muy cuidadosos y explican todo con claridad. ¡Un equipo excepcional!",
     author: "Juan Pérez",
-    pet: "Max, un Gato Siamés",
+    pet: "Simba, un Gato Siamés",
   },
   {
     image: "/img/tt3.png",
     quote:
-      "¡No podría estar más contenta con Patitas Felices! Mi hámster tuvo un problema y lo solucionaron rápidamente. La dedicación y el cariño que muestran por cada mascota es admirable.",
-    author: "Ana López",
-    pet: "Pelusa, una Hámster Siria",
+      "Los planes de Patitas Felices son una maravilla. Me dan la tranquilidad de saber que mi perrito Max tiene cubiertas todas sus necesidades de salud. ¡Y la atención es siempre súper eficiente y amigable, realmente cuidan a nuestros compañeros!",
+    author: "Lana López",
+    pet: "Max, un Golden Retriever",
   },
 ];
 
@@ -37,9 +34,9 @@ const TestimoniosC = () => {
           <Col xs={12} md={10} lg={8} className="text-center">
             <h2 className="testimonials-title">TESTIMONIOS</h2>
             <Carousel
-              controls={false} 
-              indicators={true} 
-              interval={7000} 
+              controls={false}
+              indicators
+              interval={7000}
               className="testimonial-carousel"
             >
               {testimonialsData.map((testimonial, index) => (
