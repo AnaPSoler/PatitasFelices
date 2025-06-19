@@ -60,6 +60,7 @@
   padding: 0;
   margin: 0;
   text-align: left;
+  margin-bottom: 25px;
 }
 
 .plan-features-list li {
@@ -92,22 +93,24 @@
 }
 
 .plan-more-info-btn {
-  background-color: #00bcd4; 
-  color: white; 
+  background-color: #00bcd4 !important;
+  color: white !important;
   font-weight: bold;
-  text-decoration: none;
-  margin-top: 15px; 
-  align-self: center; 
-  padding: 0.75rem 1.5rem; 
-  border-radius: 5px; 
-  transition: all 0.3s ease; 
-  cursor: pointer; 
+  text-decoration: none !important;
+  margin-top: auto;
+  align-self: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none !important;
 }
 
 .plan-more-info-btn:hover {
-  background-color: #ffc107; 
-  color: #606060; 
-  text-decoration: none; 
+  background-color: #ffc107 !important;
+  color: #606060 !important;
+  text-decoration: none !important;
+  border: none !important;
 }
 
 
