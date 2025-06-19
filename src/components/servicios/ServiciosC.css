@@ -1,5 +1,5 @@
 .section-title {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: #606060;
   margin-bottom: 1rem;
@@ -14,15 +14,14 @@
 }
 
 .section-description {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   line-height: 1.7;
   color: #606060;
   margin-bottom: 3rem;
-  max-width: 100%;
+  max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  padding: 0 15px;
 }
 
 .service-card {
@@ -36,9 +35,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
-  width: 100%;
-  box-sizing: border-box;
 }
 
 .card-icon-container {
@@ -77,13 +73,11 @@
   color: #ffffff !important;
   padding: 13px 32px !important;
   border-radius: 5px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   transition: background-color 0.3s ease, color 0.3s ease;
   min-width: 200px;
   display: inline-block;
-  width: auto;
-  max-width: 100%;
 }
 
 .service-button:hover {
@@ -95,25 +89,11 @@
 .container.my-3 {
   margin-top: 1rem !important;
   margin-bottom: 0rem !important;
-  padding-left: var(--bs-gutter-x, 0.75rem);
-  padding-right: var(--bs-gutter-x, 0.75rem);
 }
 
-.container.my-5 {
+.services-container {
   margin-top: 1rem !important;
   margin-bottom: 2rem !important;
-  padding-left: var(--bs-gutter-x, 0.75rem);
-  padding-right: var(--bs-gutter-x, 0.75rem);
-}
-
-.row {
-  margin-left: calc(var(--bs-gutter-x) * -.5);
-  margin-right: calc(var(--bs-gutter-x) * -.5);
-}
-
-.col, .col-sm-*, .col-md-*, .col-lg-*, .col-xl-*, .col-xxl-* {
-  padding-left: var(--bs-gutter-x, 0.75rem);
-  padding-right: var(--bs-gutter-x, 0.75rem);
 }
 
 @media (max-width: 768px) {
@@ -121,7 +101,7 @@
     font-size: 2rem;
   }
   .section-description {
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-bottom: 2rem;
   }
   .card-icon-container {
@@ -136,27 +116,8 @@
     font-size: 1rem;
   }
   .service-button {
+    padding: 10px 20px !important;
     font-size: 1rem;
-    padding: 13px 32px !important;
-    min-width: unset;
-    width: auto;
-    max-width: 100%;
-    display: inline-block;
-  }
-}
-
-@media (max-width: 576px) {
-  .service-card {
-    padding: 20px 15px;
-    margin-bottom: 15px;
-  }
-  .service-card-title {
-    font-size: 1.1rem;
-  }
-  .service-card-description {
-    font-size: 0.95rem;
-  }
-  .section-description {
-    padding: 0 10px;
+    min-width: 160px;
   }
 }

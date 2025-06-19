@@ -12,26 +12,30 @@
 
 .carousel-img {
   width: 100%;
-  height: auto; 
+  height: auto;
   object-fit: cover;
-  display: block; 
+  display: block;
 }
 
 .hero-overlay-content {
   position: absolute;
   top: 45%;
-  left: 10%;
+  left: 10%; /* Este valor lo ajustaremos en las media queries */
   transform: translateY(-50%);
   z-index: 3;
-  text-align: left;
   max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8rem;
 }
 
 .hero-title {
   font-size: 3.8rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin: 0;
   line-height: normal;
+  text-align: left !important;
 }
 
 .hero-title-part1,
@@ -40,10 +44,10 @@
   margin: 0;
   padding: 0;
   line-height: 1;
+  text-align: left !important;
 }
 
 .hero-title-part1 {
-  margin-bottom: 0.1rem;
   font-family: "Segoe UI Variable Regular", "Segoe UI", sans-serif;
 }
 
@@ -53,22 +57,23 @@
 
 .hero-subtitle {
   font-size: 1.5rem;
+  text-align: left !important;
   color: #000000;
   font-family: "Segoe UI Variable Regular", "Segoe UI", sans-serif;
-  margin-bottom: 1.2rem;
-  margin-top: 0.5rem;
+  margin: 0;
 }
 
 .hero-button {
   background-color: #00bcd4 !important;
   border: none !important;
-  padding: 14px 32px !important;       
-  font-size: 1.35rem;      
+  padding: 14px 28px;
+  font-size: 1.3rem;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   color: white !important;
-  font-weight: 600;
+  font-weight: 500;
+  align-self: flex-start;
 }
 
 .hero-button:hover {
@@ -97,33 +102,145 @@
   line-height: 1;
 }
 
-@media (max-width: 768px) {
-  
-  .hero-overlay-content {
-    left: 5%;
-    right: 5%;
-    max-width: none;
-    text-align: center;
-    top: 50%;
-  }
-
+@media (min-width: 768px) {
   .hero-title {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 
   .hero-subtitle {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
   }
 
   .hero-button {
-    padding: 10px 20px;
-    font-size: 1rem;
+    font-size: 1.05rem;
+    padding: 12px 26px;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero-title {
+    font-size: 4rem;
+    text-align: left !important;
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .hero-button {
+    font-size: 1.2rem;
+    padding: 14px 30px;
+  }
+}
+
+/* Modificaciones para dispositivos pequeños (max-width: 576px) */
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 1.7rem;
+    text-align: left !important;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+    /* Ajustado: Quitar padding para que el texto se alinee más a la izquierda del contenedor */
+    padding-left: 0;
+    padding-right: 0;
+    text-align: left !important;
+    width: 100%;
+  }
+
+  .hero-button {
+    font-size: 0.85rem;
+    padding: 8px 18px;
+    align-self: flex-start;
+  }
+
+  .hero-overlay-content {
+    top: 48%;
+    /* Ajustado: Reducir el 'left' y el padding para acercar al borde de la pantalla */
+    left: 20px; /* Nuevo valor, puedes ajustar a 0 si quieres que toque el borde */
+    padding: 0; /* Eliminar padding horizontal aquí */
+    align-items: flex-start;
+    text-align: left;
+    width: calc(100% - 40px); /* Ajustar el ancho para tener 20px de margen a cada lado */
+    max-width: unset; /* Deshabilitar max-width para que ocupe el espacio definido por el padding */
+  }
+
+  .hero-title-part1,
+  .hero-title-part2 {
+    text-align: left !important;
+    width: 100%;
   }
 
   .weather-widget-container {
-    top: 10px;
-    right: 10px;
-    font-size: 0.9rem;
-    padding: 8px;
+    font-size: 0.8rem;
+    padding: 6px;
+    top: 8px;
+    right: 8px;
+  }
+}
+
+/* Modificaciones para dispositivos aún más pequeños (max-width: 375px) */
+@media (max-width: 375px) {
+  .hero-title {
+    font-size: 1.4rem;
+    text-align: left !important;
+  }
+
+  .hero-subtitle {
+    font-size: 0.8rem;
+    /* Ajustado: Quitar padding */
+    padding: 0;
+    text-align: left !important;
+    width: 100%;
+  }
+
+  .hero-button {
+    font-size: 0.75rem;
+    padding: 7px 16px;
+    align-self: flex-start;
+  }
+
+  .hero-overlay-content {
+    top: 50%;
+    /* Ajustado: Reducir aún más el 'left' y el padding */
+    left: 15px; /* Otro valor, ajusta según necesidad */
+    padding: 0; /* Eliminar padding horizontal aquí */
+    align-items: flex-start;
+    text-align: left;
+    width: calc(100% - 30px); /* Ajustar el ancho para tener 15px de margen a cada lado */
+  }
+
+  .hero-title-part1,
+  .hero-title-part2 {
+    text-align: left !important;
+    width: 100%;
+  }
+
+  .weather-widget-container {
+    font-size: 0.75rem;
+    padding: 5px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .hero-title {
+    font-size: 2.2rem;
+    text-align: left !important;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    text-align: left !important;
+  }
+
+  .hero-overlay-content {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .hero-title-part1,
+  .hero-title-part2 {
+    text-align: left !important;
   }
 }

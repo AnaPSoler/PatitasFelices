@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Carousel from "react-bootstrap/Carousel";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 import "./CarouselC.css";
-import { Button } from "react-bootstrap";
 
 const carouselData = [
   {
@@ -32,6 +35,7 @@ const carouselData = [
 const CarouselC = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [loadingWeather, setLoadingWeather] = useState(true);
+  // LA ÚNICA LÍNEA QUE DEBE EXISTIR PARA weatherError ES ESTA:
   const [weatherError, setWeatherError] = useState(false);
 
   useEffect(() => {
@@ -128,22 +132,32 @@ const CarouselC = () => {
               className="d-block w-100 img-fluid carousel-img"
             />
             <div className="hero-overlay-content">
-              <h1 className="hero-title">
-                <span
-                  className="hero-title-part1"
-                  style={{ color: slide.patitasColor }}
-                >
-                  PATITAS
-                </span>
-                <span
-                  className="hero-title-part2"
-                  style={{ color: slide.felicesColor }}
-                >
-                  FELICES
-                </span>
-              </h1>
-              <p className="hero-subtitle">{slide.slogan}</p>
-              <Button className="hero-button">Agenda tu Cita</Button>
+              <Container>
+                <Row className="justify-content-start">
+                  <Col
+                    xs={12}
+                    md={8}
+                    className="text-start text-md-start d-flex flex-column justify-content-center align-items-start align-items-md-start"
+                  >
+                    <h1 className="hero-title mb-2">
+                      <span
+                        className="hero-title-part1"
+                        style={{ color: slide.patitasColor }}
+                      >
+                        PATITAS
+                      </span>
+                      <span
+                        className="hero-title-part2"
+                        style={{ color: slide.felicesColor }}
+                      >
+                        FELICES
+                      </span>
+                    </h1>
+                    <p className="hero-subtitle">{slide.slogan}</p>
+                    <Button className="hero-button mt-2">Agenda tu Cita</Button>
+                  </Col>
+                </Row>
+              </Container>
             </div>
           </Carousel.Item>
         ))}

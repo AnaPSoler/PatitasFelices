@@ -8,7 +8,6 @@ const ServiciosC = () => {
       <Container className="my-3 text-center">
         <Row className="justify-content-center">
           <Col xs={12} md={12}>
-            {" "}
             <h2 className="section-title">
               <span className="section-title-part1">NUESTROS</span>{" "}
               <span className="section-title-part2">SERVICIOS</span>
@@ -18,7 +17,7 @@ const ServiciosC = () => {
               bienestar de cada mascota, consolidando 25 años de experiencia al
               servicio de la comunidad. Nuestra filosofía se centra en un
               cuidado integral y compasivo, combinando la más avanzada medicina
-              veterinaria con un trato cercano y empático. Nuestra misión
+              veterinaria con un trato cercano y empático. Nuestra misión:
               asegurar que cada patita que entra por nuestra puerta sea una
               patita feliz y saludable."
             </p>
@@ -26,7 +25,7 @@ const ServiciosC = () => {
         </Row>
       </Container>
 
-      <Container className="my-5 text-center">
+      <Container className="services-container text-center">
         <Row className="justify-content-center">
           <Col xs={12} sm={6} md={4} className="mb-4">
             <Card className="h-100 service-card">
