@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import "./PlanesC.css";
 
 const PlanesC = () => {
@@ -22,7 +22,7 @@ const PlanesC = () => {
               <Card.Text className="plan-stage-title">PRIMEROS PASOS</Card.Text>
               <Card.Text className="plan-age-range">0 - 5 años</Card.Text>
             </div>
-            <Card.Body className="plan-card-body">
+            <Card.Body className="plan-card-body d-flex flex-column justify-content-between">
               <ul className="plan-features-list">
                 <li>Vacunación</li>
                 <li>Desparasitación</li>
@@ -30,6 +30,13 @@ const PlanesC = () => {
                 <li>Socialización</li>
                 <li>Educación temprana</li>
               </ul>
+              <Button
+                variant="link"
+                href="#"
+                className="plan-more-info-btn mt-auto"
+              >
+                Ver más
+              </Button>
             </Card.Body>
           </Card>
         </Col>
@@ -45,7 +52,7 @@ const PlanesC = () => {
               <Card.Text className="plan-stage-title">MADURANDO</Card.Text>
               <Card.Text className="plan-age-range">5 a 10 años</Card.Text>
             </div>
-            <Card.Body className="plan-card-body">
+            <Card.Body className="plan-card-body d-flex flex-column justify-content-between">
               <ul className="plan-features-list">
                 <li>Vacunación</li>
                 <li>Desparasitación</li>
@@ -55,6 +62,13 @@ const PlanesC = () => {
                 <li>Salud dental</li>
                 <li>Esterilización/Castración</li>
               </ul>
+              <Button
+                variant="link"
+                href="#"
+                className="plan-more-info-btn mt-auto"
+              >
+                Ver más
+              </Button>
             </Card.Body>
           </Card>
         </Col>
@@ -70,7 +84,7 @@ const PlanesC = () => {
               <Card.Text className="plan-stage-title">ADULTOS</Card.Text>
               <Card.Text className="plan-age-range">más de 10 años</Card.Text>
             </div>
-            <Card.Body className="plan-card-body">
+            <Card.Body className="plan-card-body d-flex flex-column justify-content-between">
               <ul className="plan-features-list">
                 <li>Revisiones regulares</li>
                 <li>Alimentación</li>
@@ -80,6 +94,13 @@ const PlanesC = () => {
                 <li>Salud mental</li>
                 <li>Adaptación del entorno</li>
               </ul>
+              <Button
+                variant="link"
+                href="#"
+                className="plan-more-info-btn mt-auto"
+              >
+                Ver más
+              </Button>
             </Card.Body>
           </Card>
         </Col>
