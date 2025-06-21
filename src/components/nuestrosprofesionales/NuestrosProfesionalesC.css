@@ -5,6 +5,14 @@
   padding-bottom: 40px;
 }
 
+.profesionales-content-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 .profesionales-title {
   font-size: 2.2rem;
   font-weight: 700;
@@ -27,7 +35,7 @@
   margin-bottom: 3rem;
   margin-left: auto;
   margin-right: auto;
-  max-width: 800px;
+  text-align: center;
 }
 
 .profesionales-row {
@@ -36,68 +44,31 @@
   align-items: flex-start;
 }
 
-.profesional-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 50%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-}
-
 .profesional-img {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
   transition: filter 0.4s ease-in-out;
-  filter: grayscale(100%);
-}
-
-.profesional-card:hover .profesional-img {
   filter: grayscale(0%);
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.4s ease-in-out;
-  text-align: center;
-  padding: 15px;
-  box-sizing: border-box;
-  border-radius: 50%;
+.profesional-img:hover {
+  filter: grayscale(100%);
 }
 
-.profesional-card:hover .overlay {
-  opacity: 1;
-}
-
-.overlay h3 {
+.profesional-name {
   font-size: 1.2rem;
-  margin-bottom: 5px;
   font-weight: 600;
+  color: #333;
+  margin-top: 15px;
+  margin-bottom: 5px;
 }
 
-.overlay p {
-  font-size: 0.9rem;
-  font-style: italic;
+.profesional-specialty {
+  font-size: 0.95rem;
+  font-style: normal;
+  color: #555;
   margin: 0;
 }
 
@@ -107,27 +78,21 @@
     flex: 0 0 100%;
     max-width: 100%;
   }
-  .profesional-card {
+  .profesional-img {
     width: 180px;
     height: 180px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-  .profesional-card {
+  .profesional-img {
     width: 180px;
     height: 180px;
-  }
-  .overlay h3 {
-    font-size: 1.1rem;
-  }
-  .overlay p {
-    font-size: 0.85rem;
   }
 }
 
 @media (min-width: 992px) {
-  .profesional-card {
+  .profesional-img {
     width: 200px;
     height: 200px;
   }
