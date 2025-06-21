@@ -1,82 +1,64 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import "./NuestrosProfesionalesC.css";
 
 const profesionalesData = [
   {
-    nombre: "Dra. Luciana Mota",
-    especialidad: "Clínica General",
-    foto: "/img/profesional1.jpg",
+    nombre: "Leticia Berger",
+    especialidad: "Presidente",
+    foto: "/img/np22.png",
   },
   {
-    nombre: "Dr. Marcos García",
-    especialidad: "Cirugía Veterinaria",
-    foto: "/img/profesional2.jpg",
-  },
-  {
-    nombre: "Dra. Laura Díaz",
-    especialidad: "Dermatología",
-    foto: "/img/profesional3.jpg",
-  },
-  {
-    nombre: "Dr. Lucía Prada",
-    especialidad: "Odontología Veterinaria",
-    foto: "/img/profesional4.jpg",
-  },
-  {
-    nombre: "Dra. Sofía Castro",
-    especialidad: "Cardiología",
-    foto: "/img/profesional5.jpg",
-  },
-  {
-    nombre: "Dr. Javier Morales",
-    especialidad: "Oftalmología",
-    foto: "/img/profesional6.jpg",
-  },
-  {
-    nombre: "Dra. Rafa Armas",
-    especialidad: "Fisioterapia",
-    foto: "/img/profesional7.jpg",
-  },
-  {
-    nombre: "Dr. Isa Gil",
-    especialidad: "Nutrición Animal",
-    foto: "/img/profesional8.jpg",
+    nombre: "Alejandro Pierini",
+    especialidad: "Vice Presidente",
+    foto: "/img/np11.png",
   },
 ];
 
 const NuestrosProfesionalesC = () => {
   return (
     <div className="profesionales-section-full-width">
-      <Container className="my-5 text-center profesionales-section-content">
-        <h2 className="profesionales-title mb-4">
-          <span className="profesionales-title-part1">NUESTROS</span>{" "}
-          <span className="profesionales-title-part2">PROFESIONALES</span>
-        </h2>
-        <p className="profesionales-description mb-5">
-          En Patitas Felices, contamos con un equipo de grandes profesionales
-          altamente capacitados en las distintas áreas de la medicina
-          veterinaria, incluyendo clínica general, cirugía, odontología,
-          dermatología y cardiología. Nuestro compromiso es brindar una atención
-          integral y personalizada, asegurando la salud y el bienestar de tus
-          queridas mascotas en cada etapa de sus vidas. Confía en la experiencia
-          y pasión de nuestros veterinarios.
-        </p>
+      <Container className="my-5 text-center profesionales-content-container">
+        <Row className="justify-content-center">
+          <Col>
+            <h2 className="profesionales-title mb-4">
+              <span className="profesionales-title-part1">NUESTROS</span>{" "}
+              <span className="profesionales-title-part2">PROFESIONALES</span>
+            </h2>
+            <p className="profesionales-description mb-5">
+              En Patitas Felices, contamos con un equipo de grandes
+              profesionales altamente capacitados en las distintas áreas de la
+              medicina veterinaria, incluyendo clínica general, cirugía,
+              odontología, dermatología y cardiología. Nuestro compromiso es
+              brindar una atención integral y personalizada, asegurando la salud
+              y el bienestar de tus queridas mascotas en cada etapa de sus
+              vidas. Confía en la experiencia y pasión de nuestros veterinarios.
+            </p>
+          </Col>
+        </Row>
 
-        <div className="profesionales-grid">
+        <Row className="justify-content-center profesionales-row">
           {profesionalesData.map((profesional, index) => (
-            <div
+            <Col
               key={index}
-              className={`profesional-card profesional-${index + 1}`}
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
+              className="mb-4 d-flex flex-column align-items-center"
             >
-              <img src={profesional.foto} alt={profesional.nombre} />
-              <div className="overlay">
-                <h3>{profesional.nombre}</h3>
-                <p>{profesional.especialidad}</p>
-              </div>
-            </div>
+              <img
+                src={profesional.foto}
+                alt={profesional.nombre}
+                className="profesional-img"
+              />
+              <h3 className="profesional-name mt-3">{profesional.nombre}</h3>
+              <p className="profesional-specialty">
+                {profesional.especialidad}
+              </p>
+            </Col>
           ))}
-        </div>
+        </Row>
       </Container>
     </div>
   );
