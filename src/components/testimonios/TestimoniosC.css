@@ -1,7 +1,6 @@
 .testimonials-section {
-  padding: 40px 0;
-  background-color: #f8f8f8;
-  width: 100%;
+  background-color: transparent;
+  padding: 60px 0;
 }
 
 .testimonials-title {
@@ -14,7 +13,7 @@
 }
 
 .testimonial-carousel {
-  max-width: 90%;
+  background-color: transparent;
   margin: 0 auto;
   position: relative; 
   padding-bottom: 40px; 
@@ -39,7 +38,8 @@
 }
 
 .testimonial-quote {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
+  font-style: italic;
   color: #606060;
   line-height: 1.6;
   margin-bottom: 15px;
@@ -48,7 +48,7 @@
 }
 
 .testimonial-author {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #606060;
   margin-bottom: 0; 
