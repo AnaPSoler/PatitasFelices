@@ -1,47 +1,17 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import "./NuestrosProfesionalesC.css";
 
 const profesionalesData = [
   {
-    nombre: "Dra. Luciana Mota",
-    especialidad: "Clínica General",
-    foto: "/img/profesional1.jpg",
+    nombre: "Leticia Berger",
+    especialidad: "Presidente",
+    foto: "/img/np22.png",
   },
   {
-    nombre: "Dr. Marcos García",
-    especialidad: "Cirugía Veterinaria",
-    foto: "/img/profesional2.jpg",
-  },
-  {
-    nombre: "Dra. Laura Díaz",
-    especialidad: "Dermatología",
-    foto: "/img/profesional3.jpg",
-  },
-  {
-    nombre: "Dr. Lucía Prada",
-    especialidad: "Odontología Veterinaria",
-    foto: "/img/profesional4.jpg",
-  },
-  {
-    nombre: "Dra. Sofía Castro",
-    especialidad: "Cardiología",
-    foto: "/img/profesional5.jpg",
-  },
-  {
-    nombre: "Dr. Javier Morales",
-    especialidad: "Oftalmología",
-    foto: "/img/profesional6.jpg",
-  },
-  {
-    nombre: "Dra. Rafa Armas",
-    especialidad: "Fisioterapia",
-    foto: "/img/profesional7.jpg",
-  },
-  {
-    nombre: "Dr. Isa Gil",
-    especialidad: "Nutrición Animal",
-    foto: "/img/profesional8.jpg",
+    nombre: "Alejandro Pierini",
+    especialidad: "Vice Presidente",
+    foto: "/img/np11.png",
   },
 ];
 
@@ -63,20 +33,23 @@ const NuestrosProfesionalesC = () => {
           y pasión de nuestros veterinarios.
         </p>
 
-        <div className="profesionales-grid">
+        <Row className="justify-content-center profesionales-row">
           {profesionalesData.map((profesional, index) => (
-            <div
-              key={index}
-              className={`profesional-card profesional-${index + 1}`}
-            >
-              <img src={profesional.foto} alt={profesional.nombre} />
-              <div className="overlay">
-                <h3>{profesional.nombre}</h3>
-                <p>{profesional.especialidad}</p>
+            <Col key={index} xs={12} sm={6} md={4} lg={3} className="mb-4">
+              <div className="profesional-card">
+                <img
+                  src={profesional.foto}
+                  alt={profesional.nombre}
+                  className="profesional-img"
+                />
+                <div className="overlay">
+                  <h3>{profesional.nombre}</h3>
+                  <p>{profesional.especialidad}</p>
+                </div>
               </div>
-            </div>
+            </Col>
           ))}
-        </div>
+        </Row>
       </Container>
     </div>
   );

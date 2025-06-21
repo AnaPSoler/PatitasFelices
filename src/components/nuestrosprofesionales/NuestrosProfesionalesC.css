@@ -1,14 +1,14 @@
 .profesionales-section-full-width {
-  background-color: #f8f8f8; 
+  background-color: #f8f8f8;
   width: 100%;
-  padding-top: 40px; 
+  padding-top: 40px;
   padding-bottom: 40px;
 }
 
 .profesionales-title {
   font-size: 2.2rem;
   font-weight: 700;
-  margin-bottom: 0.2rem; 
+  margin-bottom: 0.2rem;
   color: #333;
 }
 
@@ -23,43 +23,45 @@
 .profesionales-description {
   font-size: 1.1rem;
   color: #555;
-  margin-top: 0.5rem; 
-  margin-bottom: 3rem; 
+  margin-top: 0.5rem;
+  margin-bottom: 3rem;
   margin-left: auto;
   margin-right: auto;
+  max-width: 800px;
 }
 
-.profesionales-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
+.profesionales-row {
+  display: flex;
   justify-content: center;
-  align-items: stretch;
+  align-items: flex-start;
 }
 
 .profesional-card {
   position: relative;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 50%;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
 }
 
-.profesional-card img {
+.profesional-img {
   display: block;
   width: 100%;
-  height: 250px;
+  height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease-in-out;
+  border-radius: 50%;
+  transition: filter 0.4s ease-in-out;
   filter: grayscale(100%);
 }
 
-.profesional-card:hover img {
-  transform: scale(1.05);
+.profesional-card:hover .profesional-img {
   filter: grayscale(0%);
 }
 
@@ -80,6 +82,7 @@
   text-align: center;
   padding: 15px;
   box-sizing: border-box;
+  border-radius: 50%;
 }
 
 .profesional-card:hover .overlay {
@@ -87,73 +90,45 @@
 }
 
 .overlay h3 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-bottom: 5px;
   font-weight: 600;
 }
 
 .overlay p {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-style: italic;
   margin: 0;
 }
 
-.profesional-card:nth-child(even) {
-  height: 280px;
-}
-
-.profesional-card:nth-child(odd) {
-  height: 250px;
-}
-
-@media (min-width: 768px) {
-  .profesionales-grid {
-    grid-template-columns: repeat(3, 1fr);
+@media (max-width: 767px) {
+  .profesionales-row .col-12,
+  .profesionales-row .col-sm-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .profesional-card {
+    width: 180px;
+    height: 180px;
   }
 }
 
-@media (min-width: 992px) {
-  .profesionales-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .profesionales-title {
-    font-size: 2rem;
-  }
-  .profesionales-description {
-    font-size: 1rem;
-  }
-  .profesional-card img {
-    height: 200px;
-  }
-  .overlay h3 {
-    font-size: 1.3rem;
-  }
-  .overlay p {
-    font-size: 0.9rem;
-  }
-  .profesionales-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-  }
-}
-
-@media (max-width: 576px) {
-  .profesionales-title {
-    font-size: 1.8rem;
-  }
-  .profesionales-description {
-    font-size: 0.95rem;
-  }
-  .profesional-card img {
+@media (min-width: 768px) and (max-width: 991px) {
+  .profesional-card {
+    width: 180px;
     height: 180px;
   }
   .overlay h3 {
     font-size: 1.1rem;
   }
   .overlay p {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .profesional-card {
+    width: 200px;
+    height: 200px;
   }
 }
