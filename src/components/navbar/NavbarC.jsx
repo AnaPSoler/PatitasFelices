@@ -21,7 +21,6 @@ const NavbarC = () => {
         <Navbar.Toggle aria-controls="auth-navbar" />
 
         <Navbar.Collapse id="auth-navbar" className="gap-3">
-          
           <Nav className="me-auto gap-3">
             <Nav.Link
               href="/"
@@ -30,9 +29,9 @@ const NavbarC = () => {
               Inicio
             </Nav.Link>
             <Nav.Link
-              href="/about"
+              href="/about-us"
               className={`auth-link ${
-                pathname === "/about" ? "active-auth" : ""
+                pathname === "/about-us" ? "active-auth" : ""
               }`}
             >
               Sobre Nosotros
@@ -44,9 +43,9 @@ const NavbarC = () => {
               }`}
             >
               Contáctanos
-            </Nav.Link>
+            </Nav.Link>         
           </Nav>
-        
+
           <Nav className="gap-3">
             <Nav.Link
               href="/login"

@@ -38,3 +38,28 @@
 .logo-brand:hover {
   transform: scale(1.05) rotate(-2deg);
 }
+
+@media (max-width: 991.98px) {
+  
+  .navbar-collapse .navbar-nav {
+    gap: 0.25rem !important;   
+  }
+
+  .auth-link {
+    padding: 0.2rem 0.5rem;    
+    margin: 0;                
+    font-size: 0.9rem;
+    display: flex;            
+    align-items: center;
+    line-height: 1.2;
+  }
+
+  .auth-link::after,
+  .auth-link:hover::after,
+  .auth-link:focus::after {
+    width: 0 !important;
+    content: none;
+  }
+}
+
+
