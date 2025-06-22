@@ -6,7 +6,8 @@ import Register from "./pages/Register";
 import FooterC from "./components/footer/FooterC";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
-import Page404 from "./pages/page404";
+import Page404 from "./pages/Page404";
+
 
 function App() {
   return (
