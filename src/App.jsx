@@ -3,6 +3,7 @@ import NavbarC from "./components/navbar/NavbarC";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import FooterC from "./components/footer/FooterC";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
+      <FooterC />
     </>
   );
 }
