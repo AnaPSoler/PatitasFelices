@@ -6,6 +6,7 @@ import PlanesC from "../components/planes/PlanesC";
 import NuestrosProfesionalesC from "../components/nuestrosprofesionales/NuestrosProfesionalesC";
 import TestimoniosC from "../components/testimonios/TestimoniosC"; 
 import PublicidadC from "../components/publicidad/PublicidadC";
+import MapSection from "../components/map/MapSection";
 import "../App.css";
 
 const Home = () => {
@@ -18,6 +19,7 @@ const Home = () => {
       <NuestrosProfesionalesC />
       <TestimoniosC />
       <PublicidadC />
+      <MapSection />
     </>
   );
 };
