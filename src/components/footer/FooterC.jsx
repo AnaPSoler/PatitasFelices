@@ -10,7 +10,7 @@ import "./FooterC.css";
 
 const FooterC = () => {
   return (
-    <footer className="footer bg-white border-top mt-5 pt-4 pb-0">
+    <footer className="footer bg-white border-top pt-4 pb-0">
       <Container className="pt-4 pb-3">
         <Row className="text-center text-md-start align-items-center">
           
