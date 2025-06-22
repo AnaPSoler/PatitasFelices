@@ -155,7 +155,7 @@ const Register = () => {
                 label={
                   <>
                     Acepto los{" "}
-                    <a href="/404" target="_blank" rel="noopener noreferrer">
+                    <a href="*" target="_blank" rel="noopener noreferrer">
                       términos y condiciones
                     </a>
                   </>

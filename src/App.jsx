@@ -4,7 +4,9 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import FooterC from "./components/footer/FooterC";
-import MapSection from "./components/map/MapSection";
+import AboutUs from "./pages/AboutUs";
+import Contact from "./pages/Contact";
+import Page404 from "./pages/page404";
 
 function App() {
   return (
@@ -14,8 +16,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-      </Routes>
-      <MapSection />
+        <Route path="/about-us" element={<AboutUs />} /> 
+        <Route path="/contact" element={<Contact/>} />
+        <Route path="*" element={<Page404 />}/>
+      </Routes>      
       <FooterC />
     </>
   );
