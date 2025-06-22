@@ -41,8 +41,16 @@ const Login = () => {
     if (!validate()) return;
 
     try {
-      await axios.post("http://localhost:3001/api/login", form);
+      const response = await axios.post(
+        "http://localhost:3001/api/login",
+        form
+      );
+
+      const { token } = response.data;
+      localStorage.setItem("token", token);
+
       Swal.fire("Bienvenido", "Has iniciado sesión con éxito", "success");
+      
     } catch (error) {
       Swal.fire(
         "Error",
