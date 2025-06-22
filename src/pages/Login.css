@@ -1,21 +1,100 @@
 .form-container {
-  max-width: 400px;
-  margin: auto;
-  padding-top: 60px;
+  min-height: 100vh;
+  padding-top: 0px; 
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom right, #f9f9f9, #e3f2fd);
 }
 
 .form-card {
-  border-radius: 16px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 450px;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 188, 212, 0.2);
   border: none;
+  background-color: #ffffff;
 }
 
 .titulo {
   color: #00bcd4;
+  font-size: 1.8rem;
   font-family: 'Segoe UI Variable Semi Bold Display', sans-serif;
 }
 
-.contenido {
-  color: #606060;
+.form-label,
+.form-control {
   font-family: 'Segoe UI Variable Regular', sans-serif;
+  color: #606060;
 }
+
+input::placeholder {
+  color: #b0b0b0;
+}
+
+button[type="submit"] {
+  height: 60px;         
+  width: 40%;           
+  display: block;
+}
+
+button {
+  font-family: 'Segoe UI Variable Semi Bold Display', sans-serif;
+  font-size: 1rem;
+}
+
+.btn-personalizado {
+  display: block;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  font-family: 'Segoe UI Variable Semi Bold Display', sans-serif;
+  background-color: #17a2b8;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+button.btn-info {
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+  font-size: larger;
+}
+
+button.btn-info:hover {
+  background-color: #ffc107;
+  color: #606060
+}
+
+@media (max-width: 576px) {
+  .form-container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .form-card {
+    padding: 20px;
+    margin: 0 10px;
+    max-width: 100%;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-personalizado {
+    width: 100%;
+    height: 50px;
+    font-size: 1rem;
+  }
+
+  .titulo {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .form-label,
+  .form-control {
+    font-size: 0.95rem;
+  }
+}
+
