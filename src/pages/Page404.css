@@ -1,0 +1,101 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI Variable", sans-serif;
+  background: #f9f9f9;
+  color: #606060;
+}
+
+.not-found-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 60px;
+  gap: 3rem;
+  min-height: 100vh;
+  flex-wrap: nowrap;
+}
+
+.not-found-left {
+  flex: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found-left dotlottie-player,
+.not-found-left div {
+  width: 1200px;
+  height: auto;
+  max-width: 100%;
+}
+
+.not-found-right {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1.2rem;
+}
+
+.not-found-title {
+  font-weight: 600;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: #00bcd4;
+  white-space: normal;
+  margin: 0;
+}
+
+.not-found-text {
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #606060;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.not-found-button {
+  background-color: #00bcd4;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.not-found-button:hover {
+  background-color: #ffc107;
+  color: #000;
+}
+
+.not-found-button:active {
+  background-color: #00bcd4;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .not-found-container {
+    flex-direction: column;
+    padding: 20px;
+    gap: 2rem;
+  }
+
+  .not-found-left,
+  .not-found-right {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .not-found-title,
+  .not-found-text {
+    text-align: center;
+  }
+}
