@@ -1,38 +1,30 @@
 import { Container, Row, Col, Image } from "react-bootstrap";
 import "./AboutUs.css";
-import anaImg from "../assets/ana.jpeg";
-import anaMascotaImg from "../assets/ana-mascota.jpeg";
-import nicoImg from "../assets/nicolas.jpeg";
-import nicoMascotaImg from "../assets/nicolas-mascota.jpeg";
-import caroImg from "../assets/carolina.jpeg";
-import caroMascotaImg from "../assets/carolina-mascota.jpeg";
-import mauroImg from "../assets/mauro.jpeg";
-import mauroMascotaImg from "../assets/mauro-mascota.jpeg";
 
 const integrantes = [
   {
     nombre: "Ana Paula Soler",
     mascotaNombre: "Nina",
-    imgPersona: anaImg,
-    imgMascota: anaMascotaImg,
+    imgPersona: "/img/1.jpeg",
+    imgMascota: "/img/2.jpeg",
   },
   {
     nombre: "Nicolas Miskevish",
     mascotaNombre: "Benji",
-    imgPersona: nicoImg,
-    imgMascota: nicoMascotaImg,
+    imgPersona: "/img/3.jpeg",
+    imgMascota: "/img/4.jpeg",
   },
   {
     nombre: "Carolina Bravo",
     mascotaNombre: "Rocky",
-    imgPersona: caroImg,
-    imgMascota: caroMascotaImg,
+    imgPersona: "/img/5.jpeg",
+    imgMascota: "/img/6.jpeg",
   },
   {
     nombre: "Mauro Mazzocato",
     mascotaNombre: "Luna",
-    imgPersona: mauroImg,
-    imgMascota: mauroMascotaImg,
+    imgPersona: "/img/7.jpeg",
+    imgMascota: "/img/8.jpeg",
   },
 ];
 
