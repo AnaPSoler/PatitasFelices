@@ -17,7 +17,7 @@ const integrantes = [
     imgMascota: anaMascotaImg,
   },
   {
-    nombre: "Nicolás Jose Miskevish",
+    nombre: "Nicolas Miskevish",
     mascotaNombre: "Benji",
     imgPersona: nicoImg,
     imgMascota: nicoMascotaImg,
