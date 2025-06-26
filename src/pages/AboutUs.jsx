@@ -1,17 +1,13 @@
 import { Container, Row, Col, Image } from "react-bootstrap";
 import "./AboutUs.css";
-
-import anaImg from "../assets/Ana.jpeg";
-import anaMascotaImg from "../assets/Ana-mascota.jpeg";
-
-import nicoImg from "../assets/Nicolas.jpeg";
-import nicoMascotaImg from "../assets/Nicolas-mascota.jpeg";
-
-import caroImg from "../assets/Carolina.jpeg";
-import caroMascotaImg from "../assets/Carolina-mascota.jpeg";
-
-import mauroImg from "../assets/Mauro.jpeg";
-import mauroMascotaImg from "../assets/Mauro-mascota.jpeg";
+import anaImg from "../assets/ana.jpeg";
+import anaMascotaImg from "../assets/ana-mascota.jpeg";
+import nicoImg from "../assets/nicolas.jpeg";
+import nicoMascotaImg from "../assets/nicolas-mascota.jpeg";
+import caroImg from "../assets/carolina.jpeg";
+import caroMascotaImg from "../assets/carolina-mascota.jpeg";
+import mauroImg from "../assets/mauro.jpeg";
+import mauroMascotaImg from "../assets/mauro-mascota.jpeg";
 
 const integrantes = [
   {
