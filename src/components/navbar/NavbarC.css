@@ -38,6 +38,12 @@
 .logo-brand:hover {
   transform: scale(1.05) rotate(-2deg);
 }
+.cerrar-sesion{
+  cursor: pointer;  
+}
+.saludo-usuario {
+  margin-right: 1em;
+}
 
 @media (max-width: 991.98px) {
   

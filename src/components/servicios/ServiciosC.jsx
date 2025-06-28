@@ -90,7 +90,7 @@ const ServiciosC = () => {
             </Card>
           </Col>
         </Row>
-        <Button variant="primary" className="mt-4 service-button">
+        <Button to="*" variant="primary" className="mt-4 service-button">
           Ver todos los servicios
         </Button>
       </Container>
