@@ -1,4 +1,6 @@
+// src/pages/Login.jsx
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Form, Button, Container, Card, InputGroup } from "react-bootstrap";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -8,6 +10,7 @@ import { FaEnvelope, FaLock } from "react-icons/fa";
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
 
   const validate = () => {
     let valid = true;
@@ -46,11 +49,20 @@ const Login = () => {
         form
       );
 
-      const { token } = response.data;
-      localStorage.setItem("token", token);
+      const { token, user } = response.data;
+
+      // Guardar token y rol
+      sessionStorage.setItem("token", JSON.stringify(token));
+      sessionStorage.setItem("rol", JSON.stringify(user.rol));
 
       Swal.fire("Bienvenido", "Has iniciado sesión con éxito", "success");
-      
+
+      // Redirección según el rol
+      if (user.rol === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/user");
+      }
     } catch (error) {
       Swal.fire(
         "Error",
