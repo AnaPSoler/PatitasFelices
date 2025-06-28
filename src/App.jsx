@@ -9,11 +9,12 @@ import Contact from "./pages/Contact";
 import Page404 from "./pages/Page404";
 import AdminPage from "./pages/AdminPage"
 import Patients from "./pages/Patients"
-import Shifts from "./pages/Shifts"
 import Cart from "./pages/Cart"
 import Plans from "./pages/Plans"
 import UserPage from "./pages/UserPage"
-import PrivateRoute from "./components/PrivateRoute"; 
+import PrivateRoute from "./components/PrivateRoute";
+import UserShifts from "./pages/UserShifts"; 
+import AdminShifts from "./pages/AdminShifts";
 
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
           path="/admin/shifts"
           element={
             <PrivateRoute rol="admin">
-              <Shifts />
+              <AdminShifts />
             </PrivateRoute>
           }
         />
@@ -66,6 +67,14 @@ function App() {
           element={
             <PrivateRoute rol="usuario">
               <Plans />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/user/shifts"
+          element={
+            <PrivateRoute rol="user">
+              <UserShifts />
             </PrivateRoute>
           }
         />

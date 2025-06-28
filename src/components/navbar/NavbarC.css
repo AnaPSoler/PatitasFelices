@@ -1,36 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
 
 .auth-link {
-  color: #606060;                
-  background: transparent;
-  padding: 0.45rem 1rem;
-  border: none;
-  font-family: "Segoe UI Variable", "Segoe UI", Inter, sans-serif;
-  font-weight: 600;                        
   position: relative;
-  transition: color 0.25s ease;
+  color: #606060;
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.3s ease;
+  margin: 0 10px;
 }
 .auth-link::after {
-  content: "";
+  content: '';
   position: absolute;
+  bottom: -4px;
   left: 0;
-  bottom: 0;
   width: 0%;
   height: 2px;
-  background: #ffc107;
-  transition: width 0.25s ease;
+  background-color: #ffc107;
+  transition: width 0.3s ease;
 }
-.auth-link:hover,
-.auth-link:focus {
-  color: #ffc107 !important;                
-  text-decoration: none;
+.auth-link:hover {
+  color: #ffc107;
 }
-.auth-link:hover::after,
-.auth-link:focus::after {
-  width: 100%;                              
+.auth-link:hover::after {
+  width: 100%;
 }
-.active-auth {
-  color: #00bcd4 !important;
+.auth-link.active {
+  color: #00bcd4;
 }
 .logo-brand {
   transition: transform 0.3s ease;

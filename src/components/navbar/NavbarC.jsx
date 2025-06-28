@@ -1,10 +1,9 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
 import logo from "../../assets/logo.png";
 import "./NavbarC.css";
-import { NavLink, useNavigate} from "react-router";
+import { NavLink, useNavigate } from "react-router";
 
-const NavbarC = () => {  
-
+const NavbarC = () => {
   const navigate = useNavigate();
   const usuarioLogeado = JSON.parse(sessionStorage.getItem("token"));
   const usuarioRolLogeado = JSON.parse(sessionStorage.getItem("rol"));
@@ -39,59 +38,133 @@ const NavbarC = () => {
           </NavLink>
 
           <Navbar.Toggle aria-controls="auth-navbar" />
-          <Navbar.Collapse id="auth-navbar" className="gap-3">
-            {usuarioLogeado && usuarioRolLogeado === "usuario" ? (
-              <Nav className="ms-auto">
-                <NavLink className="auth-link" to="/user">
+          <Navbar.Collapse
+            id="auth-navbar"
+            className="gap-3 justify-content-end"
+          >
+            {!usuarioLogeado && (
+              <Nav className="me-auto">
+                <NavLink
+                  end
+                  className={({ isActive }) =>
+                    `auth-link ${isActive ? "active" : ""}`
+                  }
+                  to="/"
+                >
                   Inicio
                 </NavLink>
-                <NavLink className="auth-link" to="/user/plans">
-                  Planes
-                </NavLink>
-                <NavLink className="auth-link" to="/user/shifts">
-                  Turnos
-                </NavLink>
-                <NavLink className="auth-link" to="/user/cart">
-                  Carrito
-                </NavLink>
-              </Nav>
-            ) : usuarioLogeado && usuarioRolLogeado === "admin" ? (
-              <Nav className="ms-auto">
-                <NavLink className="auth-link" to="/admin">
-                  Inicio
-                </NavLink>
-                <NavLink className="auth-link" to="/admin/patients">
-                  Pacientes
-                </NavLink>
-                <NavLink className="auth-link" to="/admin/shifts">
-                  Turnos
-                </NavLink>
-              </Nav>
-            ) : (
-              <Nav className="ms-auto">
-                <NavLink className="auth-link" to="/">
-                  Inicio
-                </NavLink>
-                <NavLink className="auth-link" to="/aboutUs">
+                <NavLink
+                  className={({ isActive }) =>
+                    `auth-link ${isActive ? "active" : ""}`
+                  }
+                  to="/aboutUs"
+                >
                   Sobre Nosotros
                 </NavLink>
-                <NavLink className="auth-link" to="/contact">
-                  Contacto
+                <NavLink
+                  className={({ isActive }) =>
+                    `auth-link ${isActive ? "active" : ""}`
+                  }
+                  to="/contact"
+                >
+                  Contáctanos
                 </NavLink>
               </Nav>
             )}
-            {usuarioLogeado ? (
-              <Nav className="ms-auto">
-                <NavLink className="auth-link" to="#" onClick={logoutUser}>
-                  Cerrar Sesion
+
+            {usuarioLogeado && usuarioRolLogeado === "usuario" && (
+              <Nav className="me-auto">
+                <NavLink
+                  end
+                  className={({ isActive }) =>
+                    `auth-link ${isActive ? "active" : ""}`
+                  }
+                  to="/user"
+                >
+                  Inicio
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    `auth-link ${isActive ? "active" : ""}`
+                  }
+                  to="/user/plans"
+                >
+                  Planes
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    `auth-link ${isActive ? "active" : ""}`
+                  }
+                  to="/user/shifts"
+                >
+                  Turnos
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    `auth-link ${isActive ? "active" : ""}`
+                  }
+                  to="/user/cart"
+                >
+                  Carrito
                 </NavLink>
               </Nav>
-            ) : (
-              <Nav className="ms-auto">
-                <NavLink className="auth-link" to="/login">
-                  Iniciar Sesion
+            )}
+
+            {usuarioLogeado && usuarioRolLogeado === "admin" && (
+              <Nav className="me-auto">
+                <NavLink
+                  end
+                  className={({ isActive }) =>
+                    `auth-link ${isActive ? "active" : ""}`
+                  }
+                  to="/admin"
+                >
+                  Inicio
                 </NavLink>
-                <NavLink className="auth-link" to="/register">
+                <NavLink
+                  className={({ isActive }) =>
+                    `auth-link ${isActive ? "active" : ""}`
+                  }
+                  to="/admin/patients"
+                >
+                  Pacientes
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    `auth-link ${isActive ? "active" : ""}`
+                  }
+                  to="/admin/shifts"
+                >
+                  Turnos
+                </NavLink>
+              </Nav>
+            )}
+
+            {usuarioLogeado ? (
+              <Nav>
+                <span
+                  className="auth-link cerrar-sesion"
+                  onClick={cerrarSesion}
+                >
+                  Cerrar sesión
+                </span>
+              </Nav>
+            ) : (
+              <Nav>
+                <NavLink
+                  className={({ isActive }) =>
+                    `auth-link ${isActive ? "active" : ""}`
+                  }
+                  to="/login"
+                >
+                  Iniciar sesión
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    `auth-link ${isActive ? "active" : ""}`
+                  }
+                  to="/register"
+                >
                   Registrarse
                 </NavLink>
               </Nav>
@@ -101,7 +174,6 @@ const NavbarC = () => {
       </Navbar>
     </>
   );
-}
+};
 
-export default NavbarC
-
+export default NavbarC;

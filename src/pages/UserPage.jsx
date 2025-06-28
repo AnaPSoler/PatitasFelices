@@ -2,8 +2,8 @@ import Home from "./Home";
 
 const UserPage = () => {
   return (
-    <>
-      <Home />
+    <>      
+      <Home />      
     </>
   );
 };

@@ -1,7 +1,14 @@
+import "./AdminPage.css";
+import banner from "../assets/banner.png";
+
 const AdminPage = () => {
   return (
-    <div className="about-page container text-center py-5">
-      <h1 className="about-title">Página Contáctanos</h1>
+    <div className="admin-home">
+      <img src={banner} alt="Banner Patitas Felices" className="admin-banner" />
+      <h1 className="admin-title">
+        <span className="bienvenidos">Bienvenidos</span>{" "}
+        <span className="veterinarios">Veterinarios</span>
+      </h1>
     </div>
   );
 };
