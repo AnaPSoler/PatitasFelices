@@ -1,8 +1,15 @@
 import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "./PlanesC.css";
 
 const PlanesC = () => {
+  const navigate = useNavigate();
+
+  const manejarRedireccion = (plan) => {
+    navigate(`/planes/${plan}`);
+  };
+
   return (
     <Container className="my-5 text-center">
       <h2 className="plans-section-title mb-5">
@@ -31,7 +38,7 @@ const PlanesC = () => {
                 <li>Educación temprana</li>
               </ul>
               <Button
-                href="#"
+                onClick={() => manejarRedireccion("primeros-pasos")}
                 className="plan-more-info-btn mt-auto"
                 type="button"
               >
@@ -40,6 +47,7 @@ const PlanesC = () => {
             </Card.Body>
           </Card>
         </Col>
+
         <Col xs={12} sm={6} md={4} className="mb-4">
           <Card className="h-100 plan-card plan-card-2">
             <div className="plan-icon-container">
@@ -63,7 +71,7 @@ const PlanesC = () => {
                 <li>Esterilización/Castración</li>
               </ul>
               <Button
-                href="#"
+                onClick={() => manejarRedireccion("madurando")}
                 className="plan-more-info-btn mt-auto"
                 type="button"
               >
@@ -72,6 +80,7 @@ const PlanesC = () => {
             </Card.Body>
           </Card>
         </Col>
+
         <Col xs={12} sm={6} md={4} className="mb-4">
           <Card className="h-100 plan-card plan-card-3">
             <div className="plan-icon-container">
@@ -95,7 +104,7 @@ const PlanesC = () => {
                 <li>Adaptación del entorno</li>
               </ul>
               <Button
-                href="#"
+                onClick={() => manejarRedireccion("adultos")}
                 className="plan-more-info-btn mt-auto"
                 type="button"
               >
