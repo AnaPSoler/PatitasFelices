@@ -7,15 +7,15 @@ import FooterC from "./components/footer/FooterC";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
 import Page404 from "./pages/Page404";
-import AdminPage from "./pages/AdminPage"
-import Patients from "./pages/Patients"
-import Cart from "./pages/Cart"
-import Plans from "./pages/Plans"
-import UserPage from "./pages/UserPage"
+import AdminPage from "./pages/AdminPage";
+import Patients from "./pages/Patients";
+import Cart from "./pages/Cart";
+import Plans from "./pages/Plans";
+import UserPage from "./pages/UserPage";
 import PrivateRoute from "./components/PrivateRoute";
-import UserShifts from "./pages/UserShifts"; 
+import UserShifts from "./pages/UserShifts";
 import AdminShifts from "./pages/AdminShifts";
-
+import PlanDetail from "./pages/PlanDetail";
 
 function App() {
   return (
@@ -78,8 +78,8 @@ function App() {
             </PrivateRoute>
           }
         />
-
         <Route path="/" element={<Home />} />
+        <Route path="/planes/:planId" element={<PlanDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/aboutUs" element={<AboutUs />} />

@@ -5,9 +5,9 @@ const PublicidadC = () => {
   return (
     <div className="publicidad-section">
       <picture>
-        <source srcset="/img/gifgran.gif" media="(min-width: 992px)" />
+        <source srcSet="/img/gifgran.gif" media="(min-width: 992px)" />
         <source
-          srcset="/img/gifmed.gif"
+          srcSet="/img/gifmed.gif"
           media="(min-width: 577px) and (max-width: 991px)"
         />
         <img
