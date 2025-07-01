@@ -139,6 +139,16 @@ const PlanDetail = () => {
                     required
                   />
                 </Form.Group>
+                <Form.Group className="mb-3" controlId="formTelefono">
+                  <Form.Label>Número de contacto</Form.Label>
+                  <Form.Control
+                    type="tel"
+                    name="telefono"
+                    placeholder="Ej: +54 9 11 1234 5678"
+                    required
+                  />
+                </Form.Group>
+
                 <Form.Group className="mb-3">
                   <Form.Label>Mensaje adicional (opcional)</Form.Label>
                   <Form.Control
