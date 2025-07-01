@@ -1,0 +1,39 @@
+.plan-detail-card {
+  border-radius: 15px;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.plan-title {
+  font-weight: 700;
+  font-size: 2rem;
+  color: #606060 !important;
+}
+
+.cart-button {
+  background-color: #ffc107 !important;
+  border: none !important;
+  color: #424242 !important;
+  padding: 10px 20px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.cart-button:hover {
+  background-color: #00bcd4 !important;
+  color: white !important;
+}
+
+.plan-button {
+  background-color: #00bcd4  !important;
+  border: none !important;
+  color: white !important;
+  padding: 10px 20px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.plan-button:hover {
+  background-color: #ffc107!important;
+  color: #424242 !important;
+}

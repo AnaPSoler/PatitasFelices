@@ -40,7 +40,6 @@ const PlanesC = () => {
               <Button
                 onClick={() => manejarRedireccion("primeros-pasos")}
                 className="plan-more-info-btn mt-auto"
-                type="button"
               >
                 Ver más
               </Button>
@@ -73,7 +72,6 @@ const PlanesC = () => {
               <Button
                 onClick={() => manejarRedireccion("madurando")}
                 className="plan-more-info-btn mt-auto"
-                type="button"
               >
                 Ver más
               </Button>
@@ -106,7 +104,6 @@ const PlanesC = () => {
               <Button
                 onClick={() => manejarRedireccion("adultos")}
                 className="plan-more-info-btn mt-auto"
-                type="button"
               >
                 Ver más
               </Button>
