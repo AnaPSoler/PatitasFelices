@@ -20,7 +20,7 @@
 .hero-overlay-content {
   position: absolute;
   top: 45%;
-  left: 10%; 
+  left: 10%; /* Este valor lo ajustaremos en las media queries */
   transform: translateY(-50%);
   z-index: 3;
   max-width: 550px;
@@ -133,7 +133,7 @@
   }
 }
 
-
+/* Modificaciones para dispositivos pequeños (max-width: 576px) */
 @media (max-width: 576px) {
   .hero-title {
     font-size: 1.7rem;
@@ -142,6 +142,7 @@
 
   .hero-subtitle {
     font-size: 0.9rem;
+    /* Ajustado: Quitar padding para que el texto se alinee más a la izquierda del contenedor */
     padding-left: 0;
     padding-right: 0;
     text-align: left !important;
@@ -156,12 +157,13 @@
 
   .hero-overlay-content {
     top: 48%;
-    left: 20px;
-    padding: 0; 
+    /* Ajustado: Reducir el 'left' y el padding para acercar al borde de la pantalla */
+    left: 20px; /* Nuevo valor, puedes ajustar a 0 si quieres que toque el borde */
+    padding: 0; /* Eliminar padding horizontal aquí */
     align-items: flex-start;
     text-align: left;
-    width: calc(100% - 40px); 
-    max-width: unset; 
+    width: calc(100% - 40px); /* Ajustar el ancho para tener 20px de margen a cada lado */
+    max-width: unset; /* Deshabilitar max-width para que ocupe el espacio definido por el padding */
   }
 
   .hero-title-part1,
@@ -178,6 +180,7 @@
   }
 }
 
+/* Modificaciones para dispositivos aún más pequeños (max-width: 375px) */
 @media (max-width: 375px) {
   .hero-title {
     font-size: 1.4rem;
@@ -186,6 +189,7 @@
 
   .hero-subtitle {
     font-size: 0.8rem;
+    /* Ajustado: Quitar padding */
     padding: 0;
     text-align: left !important;
     width: 100%;
@@ -199,11 +203,12 @@
 
   .hero-overlay-content {
     top: 50%;
-    left: 15px;
-    padding: 0; 
+    /* Ajustado: Reducir aún más el 'left' y el padding */
+    left: 15px; /* Otro valor, ajusta según necesidad */
+    padding: 0; /* Eliminar padding horizontal aquí */
     align-items: flex-start;
     text-align: left;
-    width: calc(100% - 30px); 
+    width: calc(100% - 30px); /* Ajustar el ancho para tener 15px de margen a cada lado */
   }
 
   .hero-title-part1,

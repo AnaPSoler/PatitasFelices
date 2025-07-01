@@ -1,0 +1,92 @@
+.form-container {
+  min-width: 100vw;
+  min-height: 100vh;
+  padding-top: 0px;
+  background: linear-gradient(to bottom right, #f9f9f9, #e3f2fd);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-card {
+  margin-top: 0px;
+  width: 100%;
+  max-width: 850px;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 188, 212, 0.2);
+  border: none;
+  background-color: #ffffff;
+}
+
+.titulo {
+  color: #00bcd4;
+  font-size: 1.8rem;
+  font-family: 'Segoe UI Variable Semi Bold Display', sans-serif;
+  text-align: center;
+}
+
+.form-label,
+.form-control {
+  font-family: 'Segoe UI Variable Regular', sans-serif;
+  color: #606060;
+}
+
+input::placeholder {
+  color: #b0b0b0;
+}
+
+button {
+  font-family: 'Segoe UI Variable Semi Bold Display', sans-serif;
+  font-size: 1rem;
+}
+
+.btn-personalizado {
+  display: block;
+  margin: 0 auto;
+  width: fit-content;
+  min-width: 150px;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-family: 'Segoe UI Variable Semi Bold Display', sans-serif;
+  background-color: #17a2b8;
+  border: none;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.btn-personalizado:hover {
+  background-color: #ffc107;
+  color: #606060;
+}
+
+@media (max-width: 576px) {
+  .form-container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .form-card {
+    padding: 20px;
+    margin: 0 10px;
+    max-width: 100%;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-personalizado {
+    width: auto;
+    max-width: 100%;
+    font-size: 1rem;
+    padding: 12px 20px;
+  }
+
+  .titulo {
+    font-size: 1.5rem;
+  }
+
+  .form-label,
+  .form-control {
+    font-size: 0.95rem;
+  }
+}
