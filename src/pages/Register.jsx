@@ -1,4 +1,3 @@
-// src/pages/Register.jsx
 import { useState } from "react";
 import { Form, Button, Container, Card, InputGroup } from "react-bootstrap";
 import Swal from "sweetalert2";
@@ -68,7 +67,7 @@ const Register = () => {
     if (!validate()) return;
 
     try {
-      await axios.post("http://localhost:3001/api/register", form);
+      await axios.post("http://localhost:3001/api/auth/register", form);
       Swal.fire("Registro exitoso", "Ya podés iniciar sesión", "success");
       setForm({ nombre: "", email: "", password: "", aceptaTerminos: false });
     } catch (error) {
