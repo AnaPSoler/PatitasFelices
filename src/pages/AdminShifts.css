@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
+
+.estilo {
+  color: #00bcd4;
+  font-family: "Segoe UI Variable", "Segoe UI", Inter, sans-serif;
+}
+
+.estilo-texto {
+  color: #606060 !important;
+  font-family: "Segoe UI Variable", "Segoe UI", Inter, sans-serif;
+}
+
+.paginacion:hover {
+  background-color: #ffc107 !important;
+  border-color: #ffc107 !important;
+  color: #606060 !important;
+}
+
+.btn-colorboton {
+  background-color: #009688 !important;
+  border-color: #009688 !important;
+}
+
+.btn-colorboton:hover {
+  background-color: #00bcd4 !important;
+  border-color: #00bcd4 !important;
+}

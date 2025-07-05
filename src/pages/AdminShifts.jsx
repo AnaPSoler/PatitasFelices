@@ -12,6 +12,7 @@ import {
 import Swal from "sweetalert2";
 import clientAxios, { getAuthHeaders } from "../helpers/axios.config.helper";
 import { FaTrash } from "react-icons/fa";
+import "./AdminShifts.css";
 
 const AdminShifts = () => {
   const [turnos, setTurnos] = useState([]);
@@ -74,7 +75,7 @@ const AdminShifts = () => {
   return (
     <Container className="py-4">
       <Card className="p-4 shadow">
-        <h2 className="mb-4 text-center">Gestión de Turnos</h2>
+        <h2 className="mb-4 text-center estilo">Gestión de Turnos</h2>
 
         <Row className="mb-3">
           <Col md={6} className="mb-2">
@@ -88,10 +89,17 @@ const AdminShifts = () => {
             <Form.Select
               value={filtroVeterinario}
               onChange={(e) => setFiltroVeterinario(e.target.value)}
+              className="estilo-texto"
             >
-              <option value="">Todos los veterinarios</option>
-              <option value="Dra. Romero">Dra. Romero</option>
-              <option value="Dr. López">Dr. López</option>
+              <option value="">
+                Todos los veterinarios
+              </option>
+              <option value="Dra. Romero">
+                Dra. Romero
+              </option>
+              <option value="Dr. López">
+                Dr. López
+              </option>
             </Form.Select>
           </Col>
         </Row>
@@ -120,7 +128,7 @@ const AdminShifts = () => {
                   <td>{turno.nombreDuenio || "-"}</td>
                   <td>
                     <Button
-                      variant="danger"
+                      className="btn-colorboton"
                       size="sm"
                       onClick={() => setTurnoSeleccionado(turno)}
                     >
@@ -144,7 +152,7 @@ const AdminShifts = () => {
               variant={paginaActual === index + 1 ? "info" : "outline-info"}
               size="sm"
               onClick={() => setPaginaActual(index + 1)}
-              className="mx-1"
+              className="mx-1 paginacion"
             >
               {index + 1}
             </Button>

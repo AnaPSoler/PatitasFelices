@@ -138,6 +138,7 @@ const UserShifts = () => {
                       value={veterinario}
                       onChange={(e) => setVeterinario(e.target.value)}
                       required
+                      className="estilo-texto"
                     >
                       <option value="">Seleccionar</option>
                       <option value="Dra. Romero">Dra. Romero</option>
@@ -145,7 +146,7 @@ const UserShifts = () => {
                     </Form.Select>
                   </Col>
                   <Col>
-                    <Form.Label>Fecha</Form.Label>
+                    <Form.Label className="fecha">Fecha</Form.Label>
                     <DatePicker
                       selected={fecha}
                       onChange={(date) => setFecha(date)}
@@ -179,6 +180,7 @@ const UserShifts = () => {
                     value={hora}
                     onChange={(e) => setHora(e.target.value)}
                     required
+                    className="estilo-texto"
                   >
                     <option value="">Seleccionar</option>
                     {horariosDisponibles.map((h) => (
@@ -215,12 +217,12 @@ const UserShifts = () => {
                 <div className="text-center">
                   <Button
                     type="submit"
-                    className="btn btn-info text-white px-4"
+                    className="btn btn-info text-align-center text-white"
                   >
                     Confirmar Turno
                   </Button>
                 </div>
-              </Form>
+              </Form> 
             </Card.Body>
           </Card>
         </Col>
@@ -229,7 +231,7 @@ const UserShifts = () => {
           {turnoConfirmado && (
             <Card className="turno-confirmado mt-4 mt-md-0">
               <Card.Body>
-                <Card.Title className="text-success">🗓️ Mi Turno</Card.Title>
+                <Card.Title className="texto-color">🗓️ Mi Turno</Card.Title>
                 <p>
                   <strong>Mascota:</strong> {turnoConfirmado.mascota}
                 </p>
