@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
-import { useParams } from "react-router-dom";
+import React, { useRef, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
+import { CartContext } from "../components/cart/CartContext";
 import "./PlanDetail.css";
 
 const planInfo = {
@@ -49,10 +50,18 @@ const planInfo = {
   },
 };
 
+const precios = {
+  "primeros-pasos": 8000,
+  madurando: 12000,
+  adultos: 15000,
+};
+
 const PlanDetail = () => {
   const { planId } = useParams();
+  const navigate = useNavigate();
   const plan = planInfo[planId];
   const form = useRef();
+  const { addToCart } = useContext(CartContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -82,7 +91,6 @@ const PlanDetail = () => {
         throw new Error(result.msg || "Error al enviar el correo");
       }
     } catch (error) {
-      console.error("Error al enviar la consulta:", error);
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -163,10 +171,9 @@ const PlanDetail = () => {
                   <Button
                     className="cart-button"
                     onClick={() => {
-                      const usuario = JSON.parse(
-                        sessionStorage.getItem("usuarioLogeado")
-                      );
-                      if (!usuario) {
+                      const token = sessionStorage.getItem("token");
+
+                      if (!token) {
                         Swal.fire({
                           icon: "info",
                           title: "Debes estar registrado",
@@ -176,12 +183,22 @@ const PlanDetail = () => {
                         return;
                       }
 
-                      console.log(`Agregar al carrito: ${plan.nombre}`);
+                      const planData = {
+                        id: planId,
+                        nombre: plan.nombre,
+                        descripcion: `Plan para edad ${plan.edad}`,
+                        precio: precios[planId] || 0,
+                      };
+
+                      addToCart(planData);
+
                       Swal.fire({
                         icon: "success",
                         title: "Agregado al carrito",
                         text: `El plan "${plan.nombre}" fue agregado al carrito.`,
                         confirmButtonColor: "#00bcd4",
+                      }).then(() => {
+                        navigate("/user/cart");
                       });
                     }}
                   >
