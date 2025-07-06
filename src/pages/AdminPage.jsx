@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Row, Col, Card, ListGroup, Badge } from "react-bootstrap";
+import { Container, Row, Col, Card, ListGroup } from "react-bootstrap";
 import clientAxios, { getAuthHeaders } from "../helpers/axios.config.helper";
 import banner from "../assets/banner.png";
 import "./AdminPage.css";
@@ -44,6 +44,7 @@ const AdminPage = () => {
           className="admin-banner"
         />
       </div>
+
       <h1 className="admin-title">
         <span className="bienvenidos">Bienvenidos</span>{" "}
         <span className="veterinarios">Veterinarios</span>
@@ -51,7 +52,7 @@ const AdminPage = () => {
 
       <Container className="mt-4">
         <Card className="p-4 shadow-sm">
-          <h3 className="text-center mb-4">Turnos de esta semana</h3>
+          <h3 className="text-center mb-4 semana">Turnos de esta semana</h3>
           <Row>
             {diasSemana.map((dia, idx) => (
               <Col md={6} lg={4} key={idx} className="mb-3">
@@ -63,18 +64,15 @@ const AdminPage = () => {
                     .map((turno) => (
                       <ListGroup.Item
                         key={turno._id}
-                        className="d-flex justify-content-between align-items-start"
+                        className="d-flex text-start justify-content-center align-items-start"
                         style={{
                           minHeight: "60px",
                           display: "flex",
                           flexDirection: "column",
-                          justifyContent: "center",
                         }}
                       >
                         <div>
-                          <strong >
-                            {turno.hora} -
-                          </strong>{" "}
+                          <strong>{turno.hora} -</strong>{" "}
                           <strong style={{ color: "#00bcd4" }}>
                             {turno.mascota}
                           </strong>{" "}
