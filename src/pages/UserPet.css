@@ -1,0 +1,74 @@
+.user-pet-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+}
+
+.card {
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+h2,
+h4 {
+  font-weight: 600;
+  color: #00bcd4;
+}
+
+form label {
+  font-weight: 500;
+  color: #555;
+}
+
+form .form-control,
+form .form-select {
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+}
+
+button[type="submit"] {
+  background-color: #00bcd4;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 0.5rem;
+  color: white;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0097a7;
+}
+
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+.bg-light p {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .user-pet-container {
+    padding: 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+  }
+
+  .card {
+    padding: 1rem !important;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+  }
+}
