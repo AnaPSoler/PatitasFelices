@@ -177,6 +177,7 @@ const PlanDetail = () => {
 
                       if (!token) {
                         
+
                         Swal.fire({
                           icon: "info",
                           title: "Debes estar registrado",
