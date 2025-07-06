@@ -9,10 +9,9 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
 }
 
-h2,
-h4 {
-  font-weight: 600;
-  color: #00bcd4;
+h2, h4 {
+  font-weight: 500;
+  color: #00bcd4 !important;
 }
 
 form label {
@@ -50,25 +49,39 @@ button[type="submit"]:hover {
   font-size: 0.95rem;
 }
 
+.text-deco {
+  color: #009688 !important;
+}
+
+.paginacion-container {
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.paginacion {
+  min-width: 40px;
+  min-height: 40px;
+  font-weight: 500;
+  border-radius: 8px !important;
+  padding: 0.375rem 0.75rem;
+  text-align: center;
+}
+
+.paginacion:hover {
+  background-color: #ffc107 !important;
+  border-color: #ffc107 !important;
+  color: #606060 !important;
+}
+
+body {
+  background-color: #eef5fb !important;
+}
+
 @media (max-width: 768px) {
-  .user-pet-container {
-    padding: 0.5rem;
-  }
-
-  h2 {
-    font-size: 1.4rem;
-    text-align: center;
-  }
-
-  h4 {
-    font-size: 1.2rem;
-  }
-
-  .card {
-    padding: 1rem !important;
-  }
-
-  button[type="submit"] {
-    width: 100%;
+  .paginacion {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.9rem;
   }
 }

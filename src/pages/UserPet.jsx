@@ -6,7 +6,6 @@ import {
   Card,
   Row,
   Col,
-  Pagination,
 } from "react-bootstrap";
 import Swal from "sweetalert2";
 import clientAxios, { getAuthHeaders } from "../helpers/axios.config.helper";
@@ -49,11 +48,7 @@ const UserPet = () => {
 
     try {
       await clientAxios.post("/pacientes", form, getAuthHeaders());
-      Swal.fire(
-        "Éxito",
-        "Ficha de mascota registrada correctamente",
-        "success"
-      );
+      Swal.fire("Éxito", "Ficha de mascota registrada correctamente", "success");
       setForm({
         nombreDuenio: "",
         apellidoDuenio: "",
@@ -74,10 +69,7 @@ const UserPet = () => {
 
   const obtenerMascotas = async () => {
     try {
-      const { data } = await clientAxios.get(
-        "/pacientes/mia",
-        getAuthHeaders()
-      );
+      const { data } = await clientAxios.get("/pacientes/mia", getAuthHeaders());
       if (Array.isArray(data)) setMascotas(data);
     } catch (error) {
       console.log("No hay mascotas registradas", error);
@@ -97,12 +89,12 @@ const UserPet = () => {
 
   return (
     <Container className="user-pet-container py-4">
-      <Row>
-        <Col lg={mascotas.length ? 6 : 12} className="mb-4">
-          <Card className="p-4 shadow">
-            <h2 className="text-center mb-4">Registrar Mi Mascota</h2>
+      <Row className="tarjetas-row">
+        <Col lg={mascotas.length ? 6 : 12} className="tarjeta-col mb-4">
+          <Card className="p-4 shadow tarjeta-card">
+            <h2 className="text-center mb-4">Registrar mi Mascota</h2>
             <Form onSubmit={handleSubmit}>
-              <h5 className="text-primary">Información del Dueño</h5>
+              <h4>Información del Dueño</h4>
               <Row className="mb-3">
                 <Col md={6}>
                   <Form.Label>Nombre</Form.Label>
@@ -147,7 +139,7 @@ const UserPet = () => {
                   />
                 </Col>
               </Row>
-              <h5 className="text-primary">Información de la Mascota</h5>
+              <h4>Información de la Mascota</h4>
               <Row className="mb-3">
                 <Col md={6}>
                   <Form.Label>Nombre</Form.Label>
@@ -226,11 +218,9 @@ const UserPet = () => {
         </Col>
 
         {mascotaActual.length > 0 && (
-          <Col lg={6}>
-            <Card className="p-4 shadow bg-light h-100">
-              <h4 className="mb-3 text-success text-center">
-                Mascota Registrada
-              </h4>
+          <Col lg={6} className="tarjeta-col mb-4">
+            <Card className="p-4 shadow bg-light tarjeta-card">
+              <h4 className="mb-3 text-deco text-center">Mascota Registrada</h4>
               <p>
                 <strong>Dueño:</strong> {mascotaActual[0].nombreDuenio}{" "}
                 {mascotaActual[0].apellidoDuenio}
@@ -261,19 +251,21 @@ const UserPet = () => {
                 <strong>Peso:</strong> {mascotaActual[0].peso} kg
               </p>
 
-              {totalPaginas > 1 && (
-                <Pagination className="justify-content-center mt-3">
-                  {[...Array(totalPaginas)].map((_, index) => (
-                    <Pagination.Item
-                      key={index + 1}
-                      active={index + 1 === paginaActual}
-                      onClick={() => setPaginaActual(index + 1)}
-                    >
-                      {index + 1}
-                    </Pagination.Item>
-                  ))}
-                </Pagination>
-              )}
+              <div className="d-flex justify-content-center mt-3">
+                {[...Array(totalPaginas)].map((_, index) => (
+                  <Button
+                    key={index}
+                    variant={
+                      paginaActual === index + 1 ? "info" : "outline-info"
+                    }
+                    size="sm"
+                    onClick={() => setPaginaActual(index + 1)}
+                    className="mx-1 paginacion"
+                  >
+                    {index + 1}
+                  </Button>
+                ))}
+              </div>
             </Card>
           </Col>
         )}
