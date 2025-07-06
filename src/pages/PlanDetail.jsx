@@ -171,21 +171,9 @@ const PlanDetail = () => {
                   <Button
                     className="cart-button"
                     onClick={() => {
-                      const usuarioString = sessionStorage.getItem("token");
-                      let usuario = null;
-                      try {
-                        if (usuarioString) {
-                          usuario = JSON.parse(usuarioString);
-                        }
-                      } catch (e) {
-                        sessionStorage.removeItem("token");
-                      }
+                      const token = sessionStorage.getItem("token");
 
-                      if (
-                        !usuario ||
-                        (typeof usuario === "object" &&
-                          Object.keys(usuario).length === 0)
-                      ) {
+                      if (!token) {
                         Swal.fire({
                           icon: "info",
                           title: "Debes estar registrado",
