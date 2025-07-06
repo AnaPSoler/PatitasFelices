@@ -1,4 +1,3 @@
-// src/pages/Login.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Container, Card, InputGroup } from "react-bootstrap";
@@ -45,19 +44,17 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/login",
+        "http://localhost:3001/api/auth/login",
         form
       );
 
       const { token, user } = response.data;
 
-      // Guardar token y rol
-      sessionStorage.setItem("token", JSON.stringify(token));
-      sessionStorage.setItem("rol", JSON.stringify(user.rol));
+      sessionStorage.setItem("token", token);
+      sessionStorage.setItem("rol", user.rol);
 
-      Swal.fire("Bienvenido", "Has iniciado sesión con éxito", "success");
+      await Swal.fire("Bienvenido", "Has iniciado sesión con éxito", "success");
 
-      // Redirección según el rol
       if (user.rol === "admin") {
         navigate("/admin");
       } else {
