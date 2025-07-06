@@ -171,10 +171,12 @@ const PlanDetail = () => {
                   <Button
                     className="cart-button"
                     onClick={() => {
+
                       const token = sessionStorage.getItem("token"); 
 
                       if (!token) {
                         
+
                         Swal.fire({
                           icon: "info",
                           title: "Debes estar registrado",
