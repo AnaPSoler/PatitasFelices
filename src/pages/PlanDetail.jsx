@@ -221,3 +221,5 @@ const PlanDetail = () => {
 };
 
 export default PlanDetail;
+
+export default PlanDetail;
