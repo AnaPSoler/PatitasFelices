@@ -8,7 +8,8 @@ import "./CarouselC.css";
 
 const carouselData = [
   {
-    image: "/img/carousel1.png",
+    image:
+      "https://res.cloudinary.com/dylrki81z/image/upload/v1750544384/carousel1_necewg.png",
     alt: "Imagen1",
     patitasColor: "#000000",
     felicesColor: "#009688",
@@ -16,7 +17,8 @@ const carouselData = [
       "Cada lamida y ronroneo nos recuerda la confianza que depositan en nosotros.",
   },
   {
-    image: "/img/carousel2.png",
+    image:
+      "https://res.cloudinary.com/dylrki81z/image/upload/v1750544386/carousel2_tsvsm2.png",
     alt: "Imagen2",
     patitasColor: "#009688",
     felicesColor: "#000000",
@@ -24,7 +26,8 @@ const carouselData = [
       "Combinamos experiencia veterinaria, con un profundo amor por los animales.",
   },
   {
-    image: "/img/carousel3.png",
+    image:
+      "https://res.cloudinary.com/dylrki81z/image/upload/v1750544385/carousel3_saq2vp.png",
     alt: "Imagen3",
     patitasColor: "#ffc107",
     felicesColor: "#000000",
@@ -35,7 +38,6 @@ const carouselData = [
 const CarouselC = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [loadingWeather, setLoadingWeather] = useState(true);
-  // LA ÚNICA LÍNEA QUE DEBE EXISTIR PARA weatherError ES ESTA:
   const [weatherError, setWeatherError] = useState(false);
 
   useEffect(() => {
@@ -154,7 +156,7 @@ const CarouselC = () => {
                       </span>
                     </h1>
                     <p className="hero-subtitle">{slide.slogan}</p>
-                    <Button className="hero-button mt-2">Agenda tu Cita</Button>
+                    <Button href="/login" className="hero-button mt-2">Agenda tu Cita</Button>
                   </Col>
                 </Row>
               </Container>
