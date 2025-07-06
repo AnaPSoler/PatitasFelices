@@ -58,8 +58,8 @@ const NavbarC = () => {
               <NavLink className="auth-link" to="/user">
                 Inicio
               </NavLink>
-              <NavLink className="auth-link" to="/user/plans">
-                Planes
+              <NavLink className="auth-link" to="/user/pet">
+                Mi Mascota
               </NavLink>
               <NavLink className="auth-link" to="/user/shifts">
                 Turnos

@@ -16,6 +16,7 @@ const UserShifts = () => {
   const [horariosOcupados, setHorariosOcupados] = useState([]);
   const [turnosTotales, setTurnosTotales] = useState([]);
   const [turnoConfirmado, setTurnoConfirmado] = useState(null);
+  const [miTurno, setMiTurno] = useState(null);
 
   const horariosDisponibles = [
     "08:00",
@@ -36,32 +37,45 @@ const UserShifts = () => {
     "15:30",
   ];
 
-  useEffect(() => {
-    const cargarTurnos = async () => {
-      try {
-        const { data } = await clientAxios.get("/shifts", getAuthHeaders());
-        if (Array.isArray(data)) {
-          setTurnosTotales(data);
+  const cargarTurnos = async () => {
+    try {
+      const { data } = await clientAxios.get("/shifts", getAuthHeaders());
+      if (Array.isArray(data)) {
+        setTurnosTotales(data);
 
-          if (fecha && veterinario) {
-            const ocupados = data
-              .filter(
-                (t) =>
-                  new Date(t.fecha).toDateString() === fecha.toDateString() &&
-                  t.veterinario === veterinario
-              )
-              .map((t) => t.hora);
-            setHorariosOcupados(ocupados);
-          }
-        } else {
-          console.error("❌ Los turnos no llegaron como array:", data);
+        if (fecha && veterinario) {
+          const ocupados = data
+            .filter(
+              (t) =>
+                new Date(t.fecha).toDateString() === fecha.toDateString() &&
+                t.veterinario === veterinario
+            )
+            .map((t) => t.hora);
+          setHorariosOcupados(ocupados);
         }
-      } catch (error) {
-        console.error("Error al cargar turnos ocupados", error);
+      } else {
+        console.error("❌ Los turnos no llegaron como array:", data);
       }
-    };
+    } catch (error) {
+      console.error("Error al cargar turnos ocupados", error);
+    }
+  };
 
+  const obtenerMiTurno = async () => {
+    try {
+      const { data } = await clientAxios.get("/shifts/mios", getAuthHeaders());
+      if (Array.isArray(data) && data.length > 0) {
+        const ultimo = data[data.length - 1];
+        setMiTurno(ultimo);
+      }
+    } catch (error) {
+      console.log("No se encontró turno registrado", error);
+    }
+  };
+
+  useEffect(() => {
     cargarTurnos();
+    obtenerMiTurno();
   }, [fecha, veterinario]);
 
   const estaDeshabilitado = (date) => {
@@ -190,14 +204,7 @@ const UserShifts = () => {
                           horariosOcupados.includes(h) ? "horario-ocupado" : ""
                         }
                       >
-                        {h}{" "}
-                        {horariosOcupados.includes(h) ? (
-                          <FaTimesCircle
-                            style={{ color: "#c62828", marginLeft: "5px" }}
-                          />
-                        ) : (
-                          ""
-                        )}
+                        {h} {horariosOcupados.includes(h) ? "(Ocupado)" : ""}
                       </option>
                     ))}
                   </Form.Select>
@@ -226,25 +233,30 @@ const UserShifts = () => {
         </Col>
 
         <Col md={4} className="w-100">
-          {turnoConfirmado && (
+          {(turnoConfirmado || miTurno) && (
             <Card className="turno-confirmado mt-4 mt-md-0">
               <Card.Body>
                 <Card.Title className="text-success">🗓️ Mi Turno</Card.Title>
                 <p>
-                  <strong>Mascota:</strong> {turnoConfirmado.mascota}
+                  <strong>Mascota:</strong>{" "}
+                  {(turnoConfirmado || miTurno).mascota}
                 </p>
                 <p>
-                  <strong>Veterinario:</strong> {turnoConfirmado.veterinario}
+                  <strong>Veterinario:</strong>{" "}
+                  {(turnoConfirmado || miTurno).veterinario}
                 </p>
                 <p>
                   <strong>Fecha:</strong>{" "}
-                  {new Date(turnoConfirmado.fecha).toLocaleDateString()}
+                  {new Date(
+                    (turnoConfirmado || miTurno).fecha
+                  ).toLocaleDateString()}
                 </p>
                 <p>
-                  <strong>Hora:</strong> {turnoConfirmado.hora}
+                  <strong>Hora:</strong> {(turnoConfirmado || miTurno).hora}
                 </p>
                 <p>
-                  <strong>Detalle:</strong> {turnoConfirmado.detalle || "-"}
+                  <strong>Detalle:</strong>{" "}
+                  {(turnoConfirmado || miTurno).detalle || "-"}
                 </p>
               </Card.Body>
             </Card>

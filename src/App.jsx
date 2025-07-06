@@ -10,7 +10,7 @@ import Page404 from "./pages/Page404";
 import AdminPage from "./pages/AdminPage";
 import Patients from "./pages/Patients";
 import Cart from "./pages/Cart";
-import Plans from "./pages/Plans";
+import UserPet from "./pages/UserPet"; 
 import PlanDetail from "./pages/PlanDetail";
 import UserPage from "./pages/UserPage";
 import PrivateRoute from "./components/PrivateRoute";
@@ -63,10 +63,10 @@ function App() {
           }
         />
         <Route
-          path="/user/plans"
+          path="/user/pet"
           element={
             <PrivateRoute rol="usuario">
-              <Plans />
+              <UserPet />
             </PrivateRoute>
           }
         />
@@ -74,7 +74,7 @@ function App() {
         <Route
           path="/user/shifts"
           element={
-            <PrivateRoute rol="user">
+            <PrivateRoute rol="usuario">
               <UserShifts />
             </PrivateRoute>
           }
