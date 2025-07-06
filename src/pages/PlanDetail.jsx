@@ -171,10 +171,10 @@ const PlanDetail = () => {
                   <Button
                     className="cart-button"
                     onClick={() => {
-                      const token = sessionStorage.getItem("token"); // O localStorage.getItem("token") si usas localStorage
+                      const token = sessionStorage.getItem("token"); 
 
                       if (!token) {
-                        // Si no hay token, el usuario no está logueado
+                        
                         Swal.fire({
                           icon: "info",
                           title: "Debes estar registrado",
