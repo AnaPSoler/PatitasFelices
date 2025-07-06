@@ -171,9 +171,7 @@ const PlanDetail = () => {
                   <Button
                     className="cart-button"
                     onClick={() => {
-                      const usuario = JSON.parse(
-                        sessionStorage.getItem("usuarioLogeado") || "null"
-                      );
+                      const usuario = JSON.parse(sessionStorage.getItem("usuarioLogeado") || "null");
 
                       if (!usuario || !usuario.token) {
                         Swal.fire({
