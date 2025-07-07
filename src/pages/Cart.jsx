@@ -1,23 +1,59 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { CartContext } from "../components/cart/CartContext";
 import CheckoutMP from "../components/payment/CheckoutMP";
 import "./Cart.css";
+import Swal from "sweetalert2";
 
 const Cart = () => {
-  const { cartItems, removeFromCart, updateItemQuantity } =
-    useContext(CartContext);
+  const { cartItems, removeFromCart, updateItemQuantity, clearCart } =
+    useContext(CartContext); 
 
-  let usuarioLogeado = null;
-  try {
-    const userString = sessionStorage.getItem("usuarioLogeado");
-    if (userString) {
-      usuarioLogeado = JSON.parse(userString);
+  const [usuarioLogeado, setUsuarioLogeado] = useState(null);
+  const [pedidosAdmin, setPedidosAdmin] = useState([]); 
+
+  useEffect(() => {
+    try {
+      const userString = sessionStorage.getItem("usuarioLogeado");
+      if (userString) {
+        setUsuarioLogeado(JSON.parse(userString));
+      }
+    } catch (e) {
+      setUsuarioLogeado(null);
     }
-  } catch (e) {
-    usuarioLogeado = null;
-  }
+
+    if (usuarioLogeado?.rol === "admin") {
+      const storedOrders = localStorage.getItem("adminOrders");
+      if (storedOrders) {
+        setPedidosAdmin(JSON.parse(storedOrders));
+      } else {      
+        setPedidosAdmin([
+          {
+            id: "PED001",
+            user: "cliente1@email.com",
+            items: [{ name: "Primeros Pasos", qty: 1, price: 8000 }],
+            total: 8000,
+            status: "Pendiente",
+          },
+          {
+            id: "PED002",
+            user: "cliente2@email.com",
+            items: [{ name: "Madurando", qty: 2, price: 12000 }],
+            total: 24000,
+            status: "Completado",
+          },
+          {
+            id: "PED003",
+            user: "admin@gmail.com",
+            items: [{ name: "Adultos", qty: 1, price: 15000 }],
+            total: 15000,
+            status: "Pendiente",
+          },
+        ]);
+      }
+    }
+  }, [usuarioLogeado]); 
 
   const rol = usuarioLogeado?.rol || "usuario";
 
@@ -26,6 +62,130 @@ const Cart = () => {
     if (isNaN(newQty) || newQty < 1) return;
     updateItemQuantity(id, newQty);
   };
+
+  const handleEliminarPedido = (idPedido) => {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "No podrás revertir esta acción.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#6c757d",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const updatedPedidos = pedidosAdmin.filter(
+          (pedido) => pedido.id !== idPedido
+        );
+        setPedidosAdmin(updatedPedidos);
+        localStorage.setItem("adminOrders", JSON.stringify(updatedPedidos)); 
+        Swal.fire("Eliminado!", "El pedido ha sido eliminado.", "success");
+      }
+    });
+  };
+
+  const handleActualizarEstadoPedido = (idPedido, nuevoEstado) => {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: `Deseas cambiar el estado del pedido ${idPedido} a "${nuevoEstado}"?`,
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#00bcd4",
+      cancelButtonColor: "#6c757d",
+      confirmButtonText: "Sí, actualizar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const updatedPedidos = pedidosAdmin.map((pedido) =>
+          pedido.id === idPedido ? { ...pedido, status: nuevoEstado } : pedido
+        );
+        setPedidosAdmin(updatedPedidos);
+        localStorage.setItem("adminOrders", JSON.stringify(updatedPedidos)); 
+        Swal.fire(
+          "Actualizado!",
+          "El estado del pedido ha sido actualizado.",
+          "success"
+        );
+      }
+    });
+  };
+
+  if (rol === "admin") {
+    return (
+      <div className="container cart-container">
+        <h2 className="cart-title">Panel de Administración de Pedidos</h2>
+        {pedidosAdmin.length === 0 ? (
+          <p>No hay pedidos registrados.</p>
+        ) : (
+          <Table striped bordered hover className="cart-table">
+            <thead>
+              <tr>
+                <th>ID Pedido</th>
+                <th>Usuario</th>
+                <th>Items</th>
+                <th>Total</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pedidosAdmin.map((pedido) => (
+                <tr key={pedido.id}>
+                  <td>{pedido.id}</td>
+                  <td>{pedido.user}</td>
+                  <td>
+                    <ul>
+                      {pedido.items.map((item, idx) => (
+                        <li key={idx}>
+                          {item.name} (x{item.qty}) - ${item.price}
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
+                  <td>${pedido.total.toFixed(2)}</td>
+                  <td>{pedido.status}</td>
+                  <td>
+                    <Button
+                      variant="danger"
+                      size="sm"
+                      onClick={() => handleEliminarPedido(pedido.id)}
+                      className="me-2"
+                    >
+                      Eliminar Pedido
+                    </Button>
+                    <Button
+                      variant="info"
+                      size="sm"
+                      onClick={() =>
+                        handleActualizarEstadoPedido(
+                          pedido.id,
+                          pedido.status === "Pendiente"
+                            ? "Completado"
+                            : "Pendiente"
+                        )
+                      }
+                    >
+                      Cambiar Estado (
+                      {pedido.status === "Pendiente"
+                        ? "Completado"
+                        : "Pendiente"}
+                      )
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        )}
+        <div className="d-flex justify-content-center mt-4">
+          <Button variant="secondary" onClick={() => clearCart()}>
+            Vaciar Carrito de Cliente (simulado)
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   if (cartItems.length === 0)
     return <p className="cart-container">No hay productos en el carrito.</p>;
@@ -75,18 +235,6 @@ const Cart = () => {
                 >
                   Eliminar
                 </Button>
-                {rol === "admin" && (
-                  <Button
-                    variant="warning"
-                    size="sm"
-                    style={{ marginLeft: "5px" }}
-                    onClick={() => {
-                      alert(`Acción administrativa para: ${item.nombre}`);
-                    }}
-                  >
-                    Acción Admin
-                  </Button>
-                )}
               </td>
             </tr>
           ))}
