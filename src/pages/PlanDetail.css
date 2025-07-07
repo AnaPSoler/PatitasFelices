@@ -37,3 +37,15 @@
   background-color: #ffc107!important;
   color: #424242 !important;
 }
+
+.swal2-login-button {
+  color: #424242 !important; 
+}
+
+.form-control::placeholder {
+  color: rgba(176, 176, 176, 0.7) !important;
+}
+
+.plan-title-word {
+  color: #00BCD5;
+}
