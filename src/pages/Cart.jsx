@@ -8,10 +8,10 @@ import Swal from "sweetalert2";
 
 const Cart = () => {
   const { cartItems, removeFromCart, updateItemQuantity, clearCart } =
-    useContext(CartContext); 
+    useContext(CartContext);
 
   const [usuarioLogeado, setUsuarioLogeado] = useState(null);
-  const [pedidosAdmin, setPedidosAdmin] = useState([]); 
+  const [pedidosAdmin, setPedidosAdmin] = useState([]);
 
   useEffect(() => {
     try {
@@ -27,7 +27,7 @@ const Cart = () => {
       const storedOrders = localStorage.getItem("adminOrders");
       if (storedOrders) {
         setPedidosAdmin(JSON.parse(storedOrders));
-      } else {      
+      } else {
         setPedidosAdmin([
           {
             id: "PED001",
@@ -53,7 +53,7 @@ const Cart = () => {
         ]);
       }
     }
-  }, [usuarioLogeado]); 
+  }, [usuarioLogeado]);
 
   const rol = usuarioLogeado?.rol || "usuario";
 
@@ -79,7 +79,7 @@ const Cart = () => {
           (pedido) => pedido.id !== idPedido
         );
         setPedidosAdmin(updatedPedidos);
-        localStorage.setItem("adminOrders", JSON.stringify(updatedPedidos)); 
+        localStorage.setItem("adminOrders", JSON.stringify(updatedPedidos));
         Swal.fire("Eliminado!", "El pedido ha sido eliminado.", "success");
       }
     });
@@ -101,7 +101,7 @@ const Cart = () => {
           pedido.id === idPedido ? { ...pedido, status: nuevoEstado } : pedido
         );
         setPedidosAdmin(updatedPedidos);
-        localStorage.setItem("adminOrders", JSON.stringify(updatedPedidos)); 
+        localStorage.setItem("adminOrders", JSON.stringify(updatedPedidos));
         Swal.fire(
           "Actualizado!",
           "El estado del pedido ha sido actualizado.",
