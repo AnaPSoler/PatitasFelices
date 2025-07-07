@@ -50,7 +50,7 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         updateItemQuantity,
         clearCart,
-      }} 
+      }}
     >
       {children}
     </CartContext.Provider>

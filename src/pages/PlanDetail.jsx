@@ -173,7 +173,6 @@ const PlanDetail = () => {
                     onClick={() => {
                       const token = sessionStorage.getItem("token");
 
-
                       if (!token) {
                         Swal.fire({
                           icon: "info",
