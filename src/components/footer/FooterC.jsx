@@ -13,7 +13,6 @@ const FooterC = () => {
     <footer className="footer bg-white border-top pt-4 pb-0">
       <Container className="pt-4 pb-3">
         <Row className="text-center text-md-start align-items-center">
-          
           <Col xs={12} md={4} className="mb-4 mb-md-0">
             <a href="/" className="logo-link" aria-label="Inicio">
               <img
@@ -72,11 +71,11 @@ const FooterC = () => {
             <p className="mb-1">Jufré 279, C1414</p>
             <p className="mb-1">Cdad. Autónoma de Buenos Aires</p>
             <p className="mb-1">011 2616-3173</p>
-            <p className="mb-0">patitasfelices@gmail.com</p>
+            <p className="mb-0">patitasfelices725@gmail.com</p>
           </Col>
         </Row>
       </Container>
-      
+
       <div className="footer-bottom text-center py-2">
         © 2025 Patitas Felices. Todos los derechos reservados.
       </div>
