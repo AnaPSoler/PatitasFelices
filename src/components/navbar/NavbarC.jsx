@@ -40,7 +40,7 @@ const NavbarC = () => {
         <Navbar.Collapse id="auth-navbar" className="gap-3 justify-content-end">
           {!token && (
             <Nav className="me-auto">
-              <NavLink className="auth-link ms-5" to="/" end>
+              <NavLink className="auth-link inicio" to="/" end>
                 Inicio
               </NavLink>
               <NavLink className="auth-link" to="/aboutUs">
@@ -54,7 +54,7 @@ const NavbarC = () => {
 
           {token && rol === "usuario" && (
             <Nav className="me-auto">
-              <NavLink className="auth-link ms-5" to="/user" end>
+              <NavLink className="auth-link inicio" to="/user" end>
                 Inicio
               </NavLink>
               <NavLink className="auth-link" to="/user/pet">
@@ -71,7 +71,7 @@ const NavbarC = () => {
 
           {token && rol === "admin" && (
             <Nav className="me-auto">
-              <NavLink className="auth-link ms-5" to="/admin" end>
+              <NavLink className="auth-link inicio" to="/admin" end>
                 Inicio
               </NavLink>
               <NavLink className="auth-link" to="/admin/patients">

@@ -50,6 +50,30 @@
   margin-top: 2rem;
 }
 
+.btn-modificar {
+  background-color: #009688 !important ;
+  color: white;
+  border-color: #009688 !important;
+}
+
+.btn-modificar:hover {
+  background-color: #ffc107 !important;
+  border-color: #ffc107 !important;
+  color: #606060 !important;
+}
+
+.banner-desktop {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .banner-desktop {
+    display: none;
+  }
+}
+
+
 @media (max-width: 768px) {
   .patient-card {
     padding: 1rem;
