@@ -171,7 +171,9 @@ const PlanDetail = () => {
                   <Button
                     className="cart-button"
                     onClick={() => {
-                      const token = sessionStorage.getItem("token"); // O localStorage.getItem("token") si usas localStorage
+                      const usuario = JSON.parse(
+                        sessionStorage.getItem("usuarioLogeado") || "null"
+                      );
 
                       if (!token) {
                         // Si no hay token, el usuario no está logueado
