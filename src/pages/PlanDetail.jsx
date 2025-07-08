@@ -116,7 +116,7 @@ const PlanDetail = () => {
           <Card className="shadow plan-detail-card">
             <Card.Body>
               <h2 className="mb-3 text-center plan-title">
-                Plan: {plan.nombre}
+                <span className="plan-title-word">Plan:</span> {plan.nombre}
               </h2>
               <p className="text-center text-muted mb-4">
                 Edad recomendada: {plan.edad}
@@ -134,7 +134,7 @@ const PlanDetail = () => {
                   <Form.Control
                     type="text"
                     name="nombre"
-                    placeholder="Ej: Carolina Bravo"
+                    placeholder="Ej: Juan Pérez"
                     required
                   />
                 </Form.Group>
@@ -171,18 +171,29 @@ const PlanDetail = () => {
                   <Button
                     className="cart-button"
                     onClick={() => {
-
-                      const token = sessionStorage.getItem("token"); 
-
+                      const token = sessionStorage.getItem("token");
 
                       if (!token) {
-                        
-
                         Swal.fire({
                           icon: "info",
-                          title: "Debes estar registrado",
+                          title: "Debes estar registrado/a",
                           text: "Inicia sesión o regístrate para agregar un plan al carrito.",
+                          showCancelButton: true,
+                          confirmButtonText: "Registrarse",
+                          cancelButtonText: "Iniciar Sesión",
                           confirmButtonColor: "#00bcd4",
+                          cancelButtonColor: "#FEC107",
+                          customClass: {
+                            cancelButton: "swal2-login-button",
+                          },
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            navigate("/register");
+                          } else if (
+                            result.dismiss === Swal.DismissReason.cancel
+                          ) {
+                            navigate("/login");
+                          }
                         });
                         return;
                       }
