@@ -64,7 +64,11 @@
 
 .banner-desktop {
   width: 100%;
-  margin-top: 2rem;
+  margin-top: 2rem;  
+}
+
+.banner {
+  border-radius: 20px;
 }
 
 @media (max-width: 768px) {

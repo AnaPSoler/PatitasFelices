@@ -12,6 +12,7 @@ import {
 import Swal from "sweetalert2";
 import clientAxios, { getAuthHeaders } from "../helpers/axios.config.helper";
 import "./Patients.css";
+import { PiDogFill } from "react-icons/pi";
 
 const Patients = () => {
   const [pacientes, setPacientes] = useState([]);
@@ -95,7 +96,9 @@ const Patients = () => {
 
   return (
     <Container className="py-4">
-      <h2 className="text-center mb-4">Fichas de Pacientes</h2>
+      <h2 className="text-center mb-4">
+        Fichas de Pacientes <PiDogFill />
+      </h2>
 
       <Form.Control
         type="text"
@@ -278,9 +281,9 @@ const Patients = () => {
 
       <div className="banner-desktop mt-4">
         <img
-          src="/public/img/banner2.png" 
+          src="/public/img/banner2.png"
           alt="Banner promocional"
-          className="w-100"
+          className="banner w-100"
         />
       </div>
     </Container>

@@ -72,7 +72,7 @@ const Contact = () => {
   };
 
   return (
-    <Container className="contact-container d-flex align-items-center justify-content-center">
+    <Container className="contact-container d-flex align-items-center justify-content-center py-5">
       <Card className="contact-card animate__animated animate__fadeIn">
         <Card.Body>
           <h2 className="contact-titulo text-center mb-4 fw-semibold">
