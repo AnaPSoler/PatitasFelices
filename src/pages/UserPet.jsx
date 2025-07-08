@@ -10,6 +10,7 @@ import {
 import Swal from "sweetalert2";
 import clientAxios, { getAuthHeaders } from "../helpers/axios.config.helper";
 import "./UserPet.css";
+import { LiaPawSolid } from "react-icons/lia";
 
 const UserPet = () => {
   const [form, setForm] = useState({
@@ -220,7 +221,9 @@ const UserPet = () => {
         {mascotaActual.length > 0 && (
           <Col lg={6} className="tarjeta-col mb-4">
             <Card className="p-4 shadow bg-light tarjeta-card">
-              <h4 className="mb-3 text-deco text-center">Mascota Registrada</h4>
+              <h4 className="mb-3 text-deco text-center">
+                Mascota Registrada <LiaPawSolid />
+              </h4>
               <p>
                 <strong>Dueño:</strong> {mascotaActual[0].nombreDuenio}{" "}
                 {mascotaActual[0].apellidoDuenio}

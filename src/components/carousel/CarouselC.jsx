@@ -155,8 +155,7 @@ const CarouselC = () => {
                         FELICES
                       </span>
                     </h1>
-                    <p className="hero-subtitle">{slide.slogan}</p>
-                    <Button href="/login" className="hero-button mt-2">Agenda tu Cita</Button>
+                    <p className="hero-subtitle">{slide.slogan}</p>                    
                   </Col>
                 </Row>
               </Container>
