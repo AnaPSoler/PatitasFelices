@@ -1,0 +1,74 @@
+.cart-container {
+  margin-top: 70px;
+  margin-bottom: 100px;
+  color: #606060 !important;
+}
+
+.cart-title {
+  color: #606060 !important;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.cart-table th,
+.cart-table td {
+  text-align: center;
+  color: #606060 !important;
+}
+
+.btn-eliminar {
+  background-color: #00BCD5 !important;
+  color: white !important;
+  border: none !important;
+  cursor: pointer;
+  padding: 0.375rem 0.75rem;
+  transition: background-color 0.3s, color 0.3s;
+  font-weight: normal;
+  border-radius: 6px;
+}
+
+.btn-eliminar:hover {
+  background-color: #FEC107 !important;
+  color: #606060 !important;
+  border: none !important;
+}
+
+.input-cantidad {
+  width: 60px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 14px;
+  color: #424242 !important;
+}
+
+.payment-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.total-amount {
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #606060 !important;
+}
+
+.checkoutmp-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.checkoutmp-container > div {
+  max-width: 200px;
+}
+
+.checkoutmp-container button {
+  width: 100% !important;
+  height: 40px !important;
+  font-size: 1rem !important;
+}

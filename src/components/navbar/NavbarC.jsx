@@ -1,13 +1,12 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
 import logo from "../../assets/logo.png";
 import "./NavbarC.css";
-import { NavLink, useNavigate } from "react-router-dom"; 
+import { NavLink, useNavigate } from "react-router-dom";
 
 const NavbarC = () => {
   const navigate = useNavigate();
-
   const token = sessionStorage.getItem("token");
-  const rol = sessionStorage.getItem("rol")?.replace(/"/g, ""); 
+  const rol = sessionStorage.getItem("rol")?.replace(/"/g, "");
 
   const cerrarSesion = () => {
     sessionStorage.removeItem("token");
@@ -41,7 +40,7 @@ const NavbarC = () => {
         <Navbar.Collapse id="auth-navbar" className="gap-3 justify-content-end">
           {!token && (
             <Nav className="me-auto">
-              <NavLink className="auth-link" to="/">
+              <NavLink className="auth-link inicio" to="/" end>
                 Inicio
               </NavLink>
               <NavLink className="auth-link" to="/aboutUs">
@@ -55,11 +54,11 @@ const NavbarC = () => {
 
           {token && rol === "usuario" && (
             <Nav className="me-auto">
-              <NavLink className="auth-link" to="/user">
+              <NavLink className="auth-link inicio" to="/user" end>
                 Inicio
               </NavLink>
-              <NavLink className="auth-link" to="/user/plans">
-                Planes
+              <NavLink className="auth-link" to="/user/pet">
+                Mi Mascota
               </NavLink>
               <NavLink className="auth-link" to="/user/shifts">
                 Turnos
@@ -72,7 +71,7 @@ const NavbarC = () => {
 
           {token && rol === "admin" && (
             <Nav className="me-auto">
-              <NavLink className="auth-link" to="/admin">
+              <NavLink className="auth-link inicio" to="/admin" end>
                 Inicio
               </NavLink>
               <NavLink className="auth-link" to="/admin/patients">

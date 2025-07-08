@@ -1,0 +1,89 @@
+.admin-patients-container {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.admin-title {
+  text-align: center;
+  color: #00bcd4;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.patient-card {
+  border: 1px solid #dee2e6;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.1);
+  padding: 1.5rem;
+  background-color: #ffffff;
+  transition: transform 0.2s ease;
+  height: 100%;
+}
+
+.patient-card:hover {
+  transform: translateY(-5px);
+}
+
+.patient-card h5 {
+  color: #0097a7;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.patient-info p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.badge-title {
+  font-weight: 600;
+  margin-right: 5px;
+  color: #00bcd4;
+}
+
+.pagination {
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.btn-modificar {
+  background-color: #009688 !important ;
+  color: white;
+  border-color: #009688 !important;
+}
+
+.btn-modificar:hover {
+  background-color: #ffc107 !important;
+  border-color: #ffc107 !important;
+  color: #606060 !important;
+}
+
+.banner-desktop {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .banner-desktop {
+    display: none;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .patient-card {
+    padding: 1rem;
+  }
+
+  .admin-title {
+    font-size: 1.6rem;
+  }
+
+  .patient-info p {
+    font-size: 0.9rem;
+  }
+}
