@@ -89,6 +89,41 @@ const PlanDetail = () => {
     }
   };
 
+  const handleMercadoPago = async () => {
+    const planData = {
+      id: planId,
+      nombre: plan.nombre,
+      descripcion: `Plan para edad ${plan.edad}`,
+      precio: precios[planId] || 0,
+    };
+
+    try {
+      const response = await clientAxios.post(
+        "/mercadopago/create_preference",
+        planData
+      );
+      const { init_point } = response.data;
+
+      if (init_point) {
+        window.location.href = init_point;
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "No se pudo obtener el enlace de pago.",
+          confirmButtonColor: "#d33",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Hubo un problema al procesar el pago.",
+        confirmButtonColor: "#d33",
+      });
+    }
+  };
+
   if (!plan) {
     return (
       <Container className="py-5 text-center">
@@ -211,6 +246,14 @@ const PlanDetail = () => {
 
                   <Button type="submit" className="plan-button">
                     Enviar consulta
+                  </Button>
+
+                  <Button
+                    onClick={handleMercadoPago}
+                    className="plan-button"
+                    variant="success"
+                  >
+                    Comprar con Mercado Pago
                   </Button>
                 </div>
               </Form>
