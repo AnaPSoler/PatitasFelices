@@ -73,8 +73,8 @@ const AdminShifts = () => {
   const totalPaginas = Math.ceil(turnosFiltrados.length / turnosPorPagina);
 
   return (
-    <Container className="py-4">
-      <Card className="p-4 shadow">
+    <Container fluid className="py-4">
+      <Card className="p-4 shadow card-turnero">
         <h2 className="mb-4 text-center estilo">Gestión de Turnos</h2>
 
         <Row className="mb-3">
@@ -91,15 +91,9 @@ const AdminShifts = () => {
               onChange={(e) => setFiltroVeterinario(e.target.value)}
               className="estilo-texto"
             >
-              <option value="">
-                Todos los veterinarios
-              </option>
-              <option value="Dra. Romero">
-                Dra. Romero
-              </option>
-              <option value="Dr. López">
-                Dr. López
-              </option>
+              <option value="">Todos los veterinarios</option>
+              <option value="Dra. Romero">Dra. Romero</option>
+              <option value="Dr. López">Dr. López</option>
             </Form.Select>
           </Col>
         </Row>
