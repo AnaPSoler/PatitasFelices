@@ -67,7 +67,7 @@ const Register = () => {
     if (!validate()) return;
 
     try {
-      await clientAxios.post("/api/auth/register", form); 
+      await clientAxios.post("/auth/register", form); 
 
       Swal.fire("Registro exitoso", "Ya podés iniciar sesión", "success");
       setForm({ nombre: "", email: "", password: "", aceptaTerminos: false });

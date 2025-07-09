@@ -71,7 +71,7 @@ const PlanDetail = () => {
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await clientAxios.post("/api/email/send", data);
+      const response = await clientAxios.post("/email/send", data);
       Swal.fire({
         icon: "success",
         title: "Consulta enviada",

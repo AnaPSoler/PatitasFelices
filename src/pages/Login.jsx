@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Form, Button, Container, Card, InputGroup } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { FaEnvelope, FaLock } from "react-icons/fa";
-import clientAxios from "../helpers/axios.config.helper"; // ✅ usamos configuración centralizada
+import clientAxios from "../helpers/axios.config.helper"; 
 import "./Login.css";
 
 const Login = () => {
@@ -43,7 +43,7 @@ const Login = () => {
     if (!validate()) return;
 
     try {
-      const response = await clientAxios.post("/api/auth/login", form); // ✅ usamos baseURL dinámica
+      const response = await clientAxios.post("/auth/login", form);
 
       const { token, user } = response.data;
 
