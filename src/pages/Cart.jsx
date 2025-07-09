@@ -197,6 +197,13 @@ const Cart = () => {
         <p className="cart-container text-center carrito-vacio">
           No hay productos en el carrito
         </p>
+        <div className="cart-banner">
+          <img
+            src="/img/banner3.png"
+            alt="banner del carrito"
+            className="banner-img mb-5" 
+          />
+        </div>
       </div>
     );
 
@@ -256,10 +263,11 @@ const Cart = () => {
       <div className="payment-centered">
         <h4 className="total-amount">Total: ${total.toFixed(2)}</h4>
         <div className="checkoutmp-container">
-          <CheckoutMP cartItems={cartItems} />
-        </div>
+          <CheckoutMP cartItems={cartItems} />          
+        </div>        
       </div>
     </div>
+    
   );
 };
 

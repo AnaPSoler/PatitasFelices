@@ -3,8 +3,8 @@ import axios from "axios";
 const clientAxios = axios.create({
   baseURL:
     import.meta.env.MODE === "development"
-      ? import.meta.env.VITE_URL_BACK_LOCAL
-      : import.meta.env.VITE_URL_BACK_DEPLOY,
+      ? import.meta.env.VITE_URL_BACK_LOCAL + "/api"
+      : import.meta.env.VITE_URL_BACK_DEPLOY + "/api",
 });
 
 export const getAuthHeaders = () => {
