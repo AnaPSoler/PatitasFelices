@@ -4,6 +4,10 @@ import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { CartContext } from "../components/cart/CartContext";
 import "./PlanDetail.css";
+<<<<<<< Updated upstream
+=======
+import clientAxios from "../helpers/axios.config.helper";
+>>>>>>> Stashed changes
 
 const planInfo = {
   "primeros-pasos": {
@@ -95,6 +99,41 @@ const PlanDetail = () => {
         icon: "error",
         title: "Error",
         text: "Hubo un problema al enviar tu consulta. Inténtalo más tarde.",
+        confirmButtonColor: "#d33",
+      });
+    }
+  };
+
+  const handleMercadoPago = async () => {
+    const planData = {
+      id: planId,
+      nombre: plan.nombre,
+      descripcion: `Plan para edad ${plan.edad}`,
+      precio: precios[planId] || 0,
+    };
+
+    try {
+      const response = await clientAxios.post(
+        "/mercadopago/create_preference",
+        planData
+      );
+      const { init_point } = response.data;
+
+      if (init_point) {
+        window.location.href = init_point;
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "No se pudo obtener el enlace de pago.",
+          confirmButtonColor: "#d33",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Hubo un problema al procesar el pago.",
         confirmButtonColor: "#d33",
       });
     }
@@ -219,6 +258,14 @@ const PlanDetail = () => {
 
                   <Button type="submit" className="plan-button">
                     Enviar consulta
+                  </Button>
+
+                  <Button
+                    onClick={handleMercadoPago}
+                    className="plan-button"
+                    variant="success"
+                  >
+                    Comprar con Mercado Pago
                   </Button>
                 </div>
               </Form>
