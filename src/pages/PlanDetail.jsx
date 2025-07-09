@@ -4,10 +4,8 @@ import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { CartContext } from "../components/cart/CartContext";
 import "./PlanDetail.css";
-<<<<<<< Updated upstream
-=======
 import clientAxios from "../helpers/axios.config.helper";
->>>>>>> Stashed changes
+
 
 const planInfo = {
   "primeros-pasos": {
