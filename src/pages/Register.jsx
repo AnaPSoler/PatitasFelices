@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form, Button, Container, Card, InputGroup } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
-import clientAxios from "../helpers/axios.config.helper"; 
+import clientAxios from "../helpers/axios.config.helper";
 import "./Register.css";
 
 const Register = () => {
@@ -67,14 +67,14 @@ const Register = () => {
     if (!validate()) return;
 
     try {
-      await clientAxios.post("/api/auth/register", form); 
+      await clientAxios.post("/auth/register", form);
 
       Swal.fire("Registro exitoso", "Ya podés iniciar sesión", "success");
       setForm({ nombre: "", email: "", password: "", aceptaTerminos: false });
     } catch (error) {
       Swal.fire(
         "Error",
-        error.response?.data?.msg || "No se pudo registrar",
+        error.response?.data?.msg || "No se pudo completar el registro",
         "error"
       );
     }

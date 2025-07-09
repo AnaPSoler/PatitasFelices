@@ -53,13 +53,14 @@ const CheckoutMP = ({ cartItems }) => {
           };
         });
 
-        const backendUrl =
-          import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
+        const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
         const response = await axios.post(
-          `${backendUrl}/api/mercadopago/create_preference`,
-          { items: itemsForMP }
+          `${backendUrl}/mercadopago/create_preference`,
+          { items: itemsForMP },
+          { headers: { "Content-Type": "application/json" } }
         );
+        
 
         if (response.data && response.data.id) {
           setPreferenceId(response.data.id);

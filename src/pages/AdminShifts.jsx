@@ -24,10 +24,14 @@ const AdminShifts = () => {
 
   const obtenerTurnos = async () => {
     try {
+      const token = sessionStorage.getItem("token");
+      if (!token) throw new Error("Sesión expirada");
+
       const { data } = await clientAxios.get("/shifts", getAuthHeaders());
-      setTurnos(data);
+      if (Array.isArray(data)) setTurnos(data);
     } catch (error) {
       console.error("Error al obtener turnos", error);
+      Swal.fire("Error", "No se pudieron cargar los turnos", "error");
     }
   };
 
@@ -36,22 +40,20 @@ const AdminShifts = () => {
   }, []);
 
   const eliminarTurno = async (id) => {
-    const confirm = await Swal.fire({
-      title: "¿Cancelar turno?",
-      text: "Esta acción no se puede deshacer",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Sí, cancelar",
-    });
+    try {
+      await clientAxios.delete(`/shifts/${id}`, getAuthHeaders());
 
-    if (confirm.isConfirmed) {
-      try {
-        await clientAxios.delete(`/shifts/${id}`, getAuthHeaders());
-        setTurnos(turnos.filter((t) => t._id !== id));
-        Swal.fire("Eliminado", "El turno fue cancelado", "success");
-      } catch (error) {
-        Swal.fire("Error", "No se pudo cancelar el turno", "error");
-      }
+      const nuevosTurnos = turnos.filter((t) => t._id !== id);
+      setTurnos(nuevosTurnos);
+      setTurnoSeleccionado(null);
+
+      // Evita que se quede en una página vacía
+      const totalPaginas = Math.ceil(nuevosTurnos.length / turnosPorPagina);
+      if (paginaActual > totalPaginas) setPaginaActual(totalPaginas || 1);
+
+      Swal.fire("Eliminado", "El turno fue cancelado", "success");
+    } catch (error) {
+      Swal.fire("Error", "No se pudo cancelar el turno", "error");
     }
   };
 
@@ -163,15 +165,17 @@ const AdminShifts = () => {
           <Modal.Title>Eliminar Turno</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>
-            ¿Estás seguro que deseas eliminar el turno de{" "}
-            <strong>{turnoSeleccionado?.mascota}</strong> con el veterinario{" "}
-            <strong>{turnoSeleccionado?.veterinario}</strong> el día{" "}
-            <strong>
-              {new Date(turnoSeleccionado?.fecha).toLocaleDateString()}
-            </strong>{" "}
-            a las <strong>{turnoSeleccionado?.hora}</strong>?
-          </p>
+          {turnoSeleccionado && (
+            <p>
+              ¿Estás seguro que deseas eliminar el turno de{" "}
+              <strong>{turnoSeleccionado.mascota}</strong> con{" "}
+              <strong>{turnoSeleccionado.veterinario}</strong> el{" "}
+              <strong>
+                {new Date(turnoSeleccionado.fecha).toLocaleDateString()}
+              </strong>{" "}
+              a las <strong>{turnoSeleccionado.hora}</strong>?
+            </p>
+          )}
         </Modal.Body>
         <Modal.Footer>
           <Button
@@ -182,7 +186,9 @@ const AdminShifts = () => {
           </Button>
           <Button
             variant="danger"
-            onClick={() => eliminarTurno(turnoSeleccionado._id)}
+            onClick={() =>
+              turnoSeleccionado && eliminarTurno(turnoSeleccionado._id)
+            }
           >
             Confirmar Eliminación
           </Button>

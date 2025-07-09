@@ -6,7 +6,6 @@ import { CartContext } from "../components/cart/CartContext";
 import "./PlanDetail.css";
 import clientAxios from "../helpers/axios.config.helper";
 
-
 const planInfo = {
   "primeros-pasos": {
     nombre: "Primeros Pasos",
@@ -70,8 +69,19 @@ const PlanDetail = () => {
     const formData = new FormData(form.current);
     const data = Object.fromEntries(formData.entries());
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\+?\d{7,15}$/;
+
+    if (!emailRegex.test(data.email)) {
+      return Swal.fire("Correo inválido", "Revisa tu email", "warning");
+    }
+
+    if (!phoneRegex.test(data.telefono)) {
+      return Swal.fire("Teléfono inválido", "Formato no válido", "warning");
+    }
+
     try {
-      const response = await clientAxios.post("/api/email/send", data);
+      await clientAxios.post("/email/send", data);
       Swal.fire({
         icon: "success",
         title: "Consulta enviada",
@@ -90,6 +100,33 @@ const PlanDetail = () => {
   };
 
   const handleMercadoPago = async () => {
+
+  const handleAddToCart = () => {
+    const token = sessionStorage.getItem("token");
+
+    if (!token) {
+      Swal.fire({
+        icon: "info",
+        title: "Debes estar registrado/a",
+        text: "Inicia sesión o regístrate para agregar un plan al carrito.",
+        showCancelButton: true,
+        confirmButtonText: "Registrarse",
+        cancelButtonText: "Iniciar sesión",
+        confirmButtonColor: "#00bcd4",
+        cancelButtonColor: "#ffc107",
+        customClass: {
+          cancelButton: "swal2-login-button",
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/register");
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          navigate("/login");
+        }
+      });
+      return;
+    }
+
     const planData = {
       id: planId,
       nombre: plan.nombre,
@@ -122,6 +159,16 @@ const PlanDetail = () => {
         confirmButtonColor: "#d33",
       });
     }
+
+    addToCart(planData);
+
+    Swal.fire({
+      icon: "success",
+      title: "Agregado al carrito",
+      text: `El plan "${plan.nombre}" fue agregado al carrito.`,
+      confirmButtonColor: "#00bcd4",
+    }).then(() => navigate("/user/cart"));
+
   };
 
   if (!plan) {
@@ -162,6 +209,7 @@ const PlanDetail = () => {
                     required
                   />
                 </Form.Group>
+
                 <Form.Group className="mb-3">
                   <Form.Label>Correo electrónico</Form.Label>
                   <Form.Control
@@ -171,7 +219,8 @@ const PlanDetail = () => {
                     required
                   />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formTelefono">
+
+                <Form.Group className="mb-3">
                   <Form.Label>Número de contacto</Form.Label>
                   <Form.Control
                     type="tel"
@@ -193,53 +242,9 @@ const PlanDetail = () => {
 
                 <div className="d-flex justify-content-center gap-2 mt-3 flex-wrap">
                   <Button
+                    type="button"
                     className="cart-button"
-                    onClick={() => {
-                      const token = sessionStorage.getItem("token");
-
-                      if (!token) {
-                        Swal.fire({
-                          icon: "info",
-                          title: "Debes estar registrado/a",
-                          text: "Inicia sesión o regístrate para agregar un plan al carrito.",
-                          showCancelButton: true,
-                          confirmButtonText: "Registrarse",
-                          cancelButtonText: "Iniciar Sesión",
-                          confirmButtonColor: "#00bcd4",
-                          cancelButtonColor: "#FEC107",
-                          customClass: {
-                            cancelButton: "swal2-login-button",
-                          },
-                        }).then((result) => {
-                          if (result.isConfirmed) {
-                            navigate("/register");
-                          } else if (
-                            result.dismiss === Swal.DismissReason.cancel
-                          ) {
-                            navigate("/login");
-                          }
-                        });
-                        return;
-                      }
-
-                      const planData = {
-                        id: planId,
-                        nombre: plan.nombre,
-                        descripcion: `Plan para edad ${plan.edad}`,
-                        precio: precios[planId] || 0,
-                      };
-
-                      addToCart(planData);
-
-                      Swal.fire({
-                        icon: "success",
-                        title: "Agregado al carrito",
-                        text: `El plan "${plan.nombre}" fue agregado al carrito.`,
-                        confirmButtonColor: "#00bcd4",
-                      }).then(() => {
-                        navigate("/user/cart");
-                      });
-                    }}
+                    onClick={handleAddToCart}
                   >
                     Agregar al carrito
                   </Button>
