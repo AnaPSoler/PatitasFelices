@@ -4,6 +4,8 @@ import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { CartContext } from "../components/cart/CartContext";
 import "./PlanDetail.css";
+import clientAxios from "../helpers/axios.config.helper";
+
 
 const planInfo = {
   "primeros-pasos": {
@@ -69,27 +71,14 @@ const PlanDetail = () => {
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch("http://localhost:3001/api/send", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+      const response = await clientAxios.post("/api/email/send", data);
+      Swal.fire({
+        icon: "success",
+        title: "Consulta enviada",
+        text: "Gracias por tu interés. Pronto nos contactaremos contigo.",
+        confirmButtonColor: "#00bcd4",
       });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        Swal.fire({
-          icon: "success",
-          title: "Consulta enviada",
-          text: "Gracias por tu interés. Pronto nos contactaremos contigo.",
-          confirmButtonColor: "#00bcd4",
-        });
-        form.current.reset();
-      } else {
-        throw new Error(result.msg || "Error al enviar el correo");
-      }
+      form.current.reset();
     } catch (error) {
       Swal.fire({
         icon: "error",
