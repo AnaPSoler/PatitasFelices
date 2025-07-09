@@ -5,6 +5,7 @@ import { CartContext } from "../components/cart/CartContext";
 import CheckoutMP from "../components/payment/CheckoutMP";
 import "./Cart.css";
 import Swal from "sweetalert2";
+import { BsCart4 } from "react-icons/bs";
 
 const Cart = () => {
   const { cartItems, removeFromCart, updateItemQuantity, clearCart } =
@@ -188,7 +189,16 @@ const Cart = () => {
   }
 
   if (cartItems.length === 0)
-    return <p className="cart-container">No hay productos en el carrito.</p>;
+    return (
+      <div>
+        <p className="cart-container text-center titulo-carrito">
+          Carrito de Compras <BsCart4 />
+        </p>
+        <p className="cart-container text-center carrito-vacio">
+          No hay productos en el carrito
+        </p>
+      </div>
+    );
 
   const total = cartItems.reduce(
     (acc, item) => acc + item.precio * item.cantidad,
@@ -197,7 +207,9 @@ const Cart = () => {
 
   return (
     <div className="container cart-container">
-      <h2 className="cart-title">Carrito de Compras</h2>
+      <h2 className="cart-title titulo-carrito">
+        Carrito de Compras <BsCart4 />
+      </h2>
       <Table striped bordered hover className="cart-table">
         <thead>
           <tr>

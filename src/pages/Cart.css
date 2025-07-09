@@ -17,7 +17,7 @@
 }
 
 .btn-eliminar {
-  background-color: #00BCD5 !important;
+  background-color: #009688 !important;
   color: white !important;
   border: none !important;
   cursor: pointer;
@@ -28,8 +28,8 @@
 }
 
 .btn-eliminar:hover {
-  background-color: #FEC107 !important;
-  color: #606060 !important;
+  background-color: #00bcd4 !important;
+  color: white !important;
   border: none !important;
 }
 
@@ -71,4 +71,14 @@
   width: 100% !important;
   height: 40px !important;
   font-size: 1rem !important;
+}
+
+.carrito-vacio { 
+  color: #606060 !important;
+  font-size: x-large;  
+}
+
+.titulo-carrito {
+  color: #00BCD5 !important;
+  font-size: xx-large;
 }
