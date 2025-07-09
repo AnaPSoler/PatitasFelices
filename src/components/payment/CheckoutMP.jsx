@@ -57,7 +57,7 @@ const CheckoutMP = ({ cartItems }) => {
           import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
 
         const response = await axios.post(
-          `${backendUrl}/mercadopago/create_preference`,
+          `${backendUrl}/api/mercadopago/create_preference`, 
           { items: itemsForMP }
         );
 
