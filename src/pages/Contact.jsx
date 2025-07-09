@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Form, Button, Container, Card, InputGroup } from "react-bootstrap";
 import Swal from "sweetalert2";
-import axios from "axios";
 import { FaUser, FaEnvelope, FaCommentDots } from "react-icons/fa";
+import clientAxios from "../helpers/axios.config.helper"; 
 import "./Contact.css";
 
 const Contact = () => {
@@ -53,7 +53,7 @@ const Contact = () => {
     if (!validate()) return;
 
     try {
-      await axios.post("http://localhost:3001/api/contact", form);
+      await clientAxios.post("/api/contact", form); 
 
       await Swal.fire(
         "¡Consulta enviada!",
@@ -73,7 +73,7 @@ const Contact = () => {
 
   return (
     <Container className="contact-container d-flex align-items-center justify-content-center py-5">
-      <Card className="contact-card animate__animated animate__fadeIn">
+      <Card className="contact-card animate_animated animate_fadeIn">
         <Card.Body>
           <h2 className="contact-titulo text-center mb-4 fw-semibold">
             Contáctanos
