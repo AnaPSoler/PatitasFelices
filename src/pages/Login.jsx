@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Form, Button, Container, Card, InputGroup } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { FaEnvelope, FaLock } from "react-icons/fa";
-import clientAxios from "../helpers/axios.config.helper"; 
+import clientAxios from "../helpers/axios.config.helper";
 import "./Login.css";
 
 const Login = () => {
@@ -60,7 +60,7 @@ const Login = () => {
     } catch (error) {
       Swal.fire(
         "Error",
-        error.response?.data?.msg || "Credenciales incorrectas",
+        error.response?.data?.msg || "No se pudo iniciar sesión",
         "error"
       );
     }

@@ -1,12 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Container,
-  Form,
-  Button,
-  Card,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Container, Form, Button, Card, Row, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
 import clientAxios, { getAuthHeaders } from "../helpers/axios.config.helper";
 import "./UserPet.css";
@@ -25,6 +18,7 @@ const UserPet = () => {
     edad: "",
     peso: "",
   });
+
   const [mascotas, setMascotas] = useState([]);
   const [paginaActual, setPaginaActual] = useState(1);
   const mascotasPorPagina = 1;
@@ -36,6 +30,7 @@ const UserPet = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const telefonoRegex = /^\d{8,15}$/;
 
@@ -48,8 +43,16 @@ const UserPet = () => {
     }
 
     try {
+      const token = sessionStorage.getItem("token");
+      if (!token) throw new Error("Sesión expirada. Por favor iniciá sesión.");
+
       await clientAxios.post("/pacientes", form, getAuthHeaders());
-      Swal.fire("Éxito", "Ficha de mascota registrada correctamente", "success");
+      Swal.fire(
+        "Éxito",
+        "Ficha de mascota registrada correctamente",
+        "success"
+      );
+
       setForm({
         nombreDuenio: "",
         apellidoDuenio: "",
@@ -62,18 +65,31 @@ const UserPet = () => {
         edad: "",
         peso: "",
       });
+
       obtenerMascotas();
     } catch (error) {
-      Swal.fire("Error", "No se pudo registrar la mascota", "error");
+      Swal.fire(
+        "Error",
+        error.response?.data?.msg ||
+          error.message ||
+          "No se pudo registrar la mascota",
+        "error"
+      );
     }
   };
 
   const obtenerMascotas = async () => {
     try {
-      const { data } = await clientAxios.get("/pacientes/mia", getAuthHeaders());
+      const token = sessionStorage.getItem("token");
+      if (!token) return;
+
+      const { data } = await clientAxios.get(
+        "/pacientes/mia",
+        getAuthHeaders()
+      );
       if (Array.isArray(data)) setMascotas(data);
     } catch (error) {
-      console.log("No hay mascotas registradas", error);
+      console.log("Error al obtener mascotas:", error);
     }
   };
 

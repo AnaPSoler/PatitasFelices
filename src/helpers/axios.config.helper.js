@@ -1,11 +1,12 @@
 import axios from "axios";
 
 const clientAxios = axios.create({
-  baseURL:
-    import.meta.env.MODE === "development"
-      ? import.meta.env.VITE_URL_BACK_LOCAL + "/api"
-      : import.meta.env.VITE_URL_BACK_DEPLOY + "/api",
+  baseURL: import.meta.env.MODE === "development"
+    ? "http://localhost:3001/api"
+    : "https://patitas-felices-backend.vercel.app/api",
+  withCredentials: true,
 });
+
 
 export const getAuthHeaders = () => {
   const token = sessionStorage.getItem("token");

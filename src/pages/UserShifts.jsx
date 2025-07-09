@@ -39,6 +39,9 @@ const UserShifts = () => {
 
   const cargarTurnos = async () => {
     try {
+      const token = sessionStorage.getItem("token");
+      if (!token) return;
+
       const { data } = await clientAxios.get("/shifts", getAuthHeaders());
       if (Array.isArray(data)) {
         setTurnosTotales(data);
@@ -63,10 +66,12 @@ const UserShifts = () => {
 
   const obtenerMiTurno = async () => {
     try {
+      const token = sessionStorage.getItem("token");
+      if (!token) return;
+
       const { data } = await clientAxios.get("/shifts/mios", getAuthHeaders());
       if (Array.isArray(data) && data.length > 0) {
-        const ultimo = data[data.length - 1];
-        setMiTurno(ultimo);
+        setMiTurno(data[data.length - 1]);
       }
     } catch (error) {
       console.log("No se encontró turno registrado", error);
@@ -103,6 +108,9 @@ const UserShifts = () => {
     }
 
     try {
+      const token = sessionStorage.getItem("token");
+      if (!token) throw new Error("Sesión expirada. Por favor iniciá sesión.");
+
       const response = await clientAxios.post(
         "/shifts",
         { mascota, veterinario, fecha, hora, detalle },
@@ -117,15 +125,20 @@ const UserShifts = () => {
       setFecha(null);
       setHora("");
       setDetalle("");
+      cargarTurnos();
+      obtenerMiTurno();
     } catch (error) {
-      console.error("Error al enviar turno:", error);
       Swal.fire(
         "Error",
-        error.response?.data?.msg || "No se pudo reservar el turno",
+        error.response?.data?.msg ||
+          error.message ||
+          "No se pudo reservar el turno",
         "error"
       );
     }
   };
+
+  const turnoActual = turnoConfirmado || miTurno;
 
   return (
     <Container className="form-container">
@@ -229,36 +242,31 @@ const UserShifts = () => {
                     Confirmar Turno
                   </Button>
                 </div>
-              </Form> 
+              </Form>
             </Card.Body>
           </Card>
         </Col>
 
         <Col md={4} className="w-100">
-          {(turnoConfirmado || miTurno) && (
+          {turnoActual && (
             <Card className="turno-confirmado mt-4 mt-md-0">
               <Card.Body>
                 <Card.Title className="texto-color">🗓️ Mi Turno</Card.Title>
                 <p>
-                  <strong>Mascota:</strong>{" "}
-                  {(turnoConfirmado || miTurno).mascota}
+                  <strong>Mascota:</strong> {turnoActual.mascota}
                 </p>
                 <p>
-                  <strong>Veterinario:</strong>{" "}
-                  {(turnoConfirmado || miTurno).veterinario}
+                  <strong>Veterinario:</strong> {turnoActual.veterinario}
                 </p>
                 <p>
                   <strong>Fecha:</strong>{" "}
-                  {new Date(
-                    (turnoConfirmado || miTurno).fecha
-                  ).toLocaleDateString()}
+                  {new Date(turnoActual.fecha).toLocaleDateString()}
                 </p>
                 <p>
-                  <strong>Hora:</strong> {(turnoConfirmado || miTurno).hora}
+                  <strong>Hora:</strong> {turnoActual.hora}
                 </p>
                 <p>
-                  <strong>Detalle:</strong>{" "}
-                  {(turnoConfirmado || miTurno).detalle || "-"}
+                  <strong>Detalle:</strong> {turnoActual.detalle || "-"}
                 </p>
               </Card.Body>
             </Card>

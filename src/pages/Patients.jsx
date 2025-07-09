@@ -5,7 +5,6 @@ import {
   Row,
   Col,
   Button,
-  Pagination,
   Form,
   Modal,
 } from "react-bootstrap";
@@ -20,15 +19,18 @@ const Patients = () => {
   const [busqueda, setBusqueda] = useState("");
   const [modalPaciente, setModalPaciente] = useState(null);
   const [formulario, setFormulario] = useState({});
-
   const pacientesPorPagina = 6;
 
   const obtenerPacientes = async () => {
     try {
+      const token = sessionStorage.getItem("token");
+      if (!token) throw new Error("Sesión expirada");
+
       const { data } = await clientAxios.get("/pacientes", getAuthHeaders());
-      setPacientes(data);
+      if (Array.isArray(data)) setPacientes(data);
     } catch (error) {
       console.error("Error al obtener pacientes", error);
+      Swal.fire("Error", "No se pudo cargar la lista de pacientes", "error");
     }
   };
 
@@ -175,6 +177,7 @@ const Patients = () => {
         ))}
       </div>
 
+      {/* Modal de edición */}
       <Modal
         show={!!modalPaciente}
         onHide={() => setModalPaciente(null)}
@@ -185,88 +188,30 @@ const Patients = () => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-2">
-              <Form.Label>Nombre Mascota</Form.Label>
-              <Form.Control
-                name="nombreMascota"
-                value={formulario.nombreMascota || ""}
-                onChange={manejarCambio}
-              />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Nombre Dueño</Form.Label>
-              <Form.Control
-                name="nombreDuenio"
-                value={formulario.nombreDuenio || ""}
-                onChange={manejarCambio}
-              />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Apellido Dueño</Form.Label>
-              <Form.Control
-                name="apellidoDuenio"
-                value={formulario.apellidoDuenio || ""}
-                onChange={manejarCambio}
-              />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                name="emailDuenio"
-                value={formulario.emailDuenio || ""}
-                onChange={manejarCambio}
-              />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Teléfono</Form.Label>
-              <Form.Control
-                name="telefonoDuenio"
-                value={formulario.telefonoDuenio || ""}
-                onChange={manejarCambio}
-              />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Especie</Form.Label>
-              <Form.Control
-                name="especie"
-                value={formulario.especie || ""}
-                onChange={manejarCambio}
-              />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Raza</Form.Label>
-              <Form.Control
-                name="raza"
-                value={formulario.raza || ""}
-                onChange={manejarCambio}
-              />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Sexo</Form.Label>
-              <Form.Control
-                name="sexo"
-                value={formulario.sexo || ""}
-                onChange={manejarCambio}
-              />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Edad</Form.Label>
-              <Form.Control
-                type="number"
-                name="edad"
-                value={formulario.edad || ""}
-                onChange={manejarCambio}
-              />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Peso</Form.Label>
-              <Form.Control
-                type="number"
-                name="peso"
-                value={formulario.peso || ""}
-                onChange={manejarCambio}
-              />
-            </Form.Group>
+            {[
+              "nombreMascota",
+              "nombreDuenio",
+              "apellidoDuenio",
+              "emailDuenio",
+              "telefonoDuenio",
+              "especie",
+              "raza",
+              "sexo",
+              "edad",
+              "peso",
+            ].map((campo) => (
+              <Form.Group className="mb-2" key={campo}>
+                <Form.Label>
+                  {campo.charAt(0).toUpperCase() + campo.slice(1)}
+                </Form.Label>
+                <Form.Control
+                  type={["edad", "peso"].includes(campo) ? "number" : "text"}
+                  name={campo}
+                  value={formulario[campo] || ""}
+                  onChange={manejarCambio}
+                />
+              </Form.Group>
+            ))}
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -281,7 +226,7 @@ const Patients = () => {
 
       <div className="banner-desktop mt-4">
         <img
-          src="/public/img/banner2.png"
+          src="/img/banner2.png"
           alt="Banner promocional"
           className="banner w-100"
         />

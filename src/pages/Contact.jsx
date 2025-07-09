@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form, Button, Container, Card, InputGroup } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { FaUser, FaEnvelope, FaCommentDots } from "react-icons/fa";
-import clientAxios from "../helpers/axios.config.helper"; 
+import clientAxios from "../helpers/axios.config.helper";
 import "./Contact.css";
 
 const Contact = () => {
@@ -25,6 +25,9 @@ const Contact = () => {
     if (!form.nombre.trim()) {
       newErrors.nombre = "El nombre es obligatorio";
       valid = false;
+    } else if (form.nombre.trim().length < 3) {
+      newErrors.nombre = "Debe tener al menos 3 caracteres";
+      valid = false;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -35,6 +38,9 @@ const Contact = () => {
 
     if (!form.consulta.trim()) {
       newErrors.consulta = "La consulta no puede estar vacía";
+      valid = false;
+    } else if (form.consulta.trim().length < 10) {
+      newErrors.consulta = "La consulta debe tener al menos 10 caracteres";
       valid = false;
     }
 
@@ -53,7 +59,7 @@ const Contact = () => {
     if (!validate()) return;
 
     try {
-      await clientAxios.post("/api/contact", form); 
+      await clientAxios.post("/contact", form);
 
       await Swal.fire(
         "¡Consulta enviada!",
@@ -144,11 +150,16 @@ const Contact = () => {
                   {errors.consulta}
                 </Form.Control.Feedback>
               </InputGroup>
+              <div className="text-end text-muted small mt-1">
+                {form.consulta.length}/250
+              </div>
             </Form.Group>
 
-            <Button variant="info" type="submit" className="btn-contacto">
-              Enviar
-            </Button>
+            <div className="text-center">
+              <Button variant="info" type="submit" className="btn-contacto">
+                Enviar
+              </Button>
+            </div>
           </Form>
         </Card.Body>
       </Card>
