@@ -71,27 +71,14 @@ const PlanDetail = () => {
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch("http://localhost:3001/api/send", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+      const response = await clientAxios.post("/api/email/send", data);
+      Swal.fire({
+        icon: "success",
+        title: "Consulta enviada",
+        text: "Gracias por tu interés. Pronto nos contactaremos contigo.",
+        confirmButtonColor: "#00bcd4",
       });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        Swal.fire({
-          icon: "success",
-          title: "Consulta enviada",
-          text: "Gracias por tu interés. Pronto nos contactaremos contigo.",
-          confirmButtonColor: "#00bcd4",
-        });
-        form.current.reset();
-      } else {
-        throw new Error(result.msg || "Error al enviar el correo");
-      }
+      form.current.reset();
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -153,7 +140,7 @@ const PlanDetail = () => {
           <Card className="shadow plan-detail-card">
             <Card.Body>
               <h2 className="mb-3 text-center plan-title">
-                Plan: {plan.nombre}
+                <span className="plan-title-word">Plan:</span> {plan.nombre}
               </h2>
               <p className="text-center text-muted mb-4">
                 Edad recomendada: {plan.edad}
@@ -171,7 +158,7 @@ const PlanDetail = () => {
                   <Form.Control
                     type="text"
                     name="nombre"
-                    placeholder="Ej: Carolina Bravo"
+                    placeholder="Ej: Juan Pérez"
                     required
                   />
                 </Form.Group>
@@ -208,26 +195,29 @@ const PlanDetail = () => {
                   <Button
                     className="cart-button"
                     onClick={() => {
-                      const usuarioString = sessionStorage.getItem("token");
-                      let usuario = null;
-                      try {
-                        if (usuarioString) {
-                          usuario = JSON.parse(usuarioString);
-                        }
-                      } catch (e) {
-                        sessionStorage.removeItem("token");
-                      }
+                      const token = sessionStorage.getItem("token");
 
-                      if (
-                        !usuario ||
-                        (typeof usuario === "object" &&
-                          Object.keys(usuario).length === 0)
-                      ) {
+                      if (!token) {
                         Swal.fire({
                           icon: "info",
-                          title: "Debes estar registrado",
+                          title: "Debes estar registrado/a",
                           text: "Inicia sesión o regístrate para agregar un plan al carrito.",
+                          showCancelButton: true,
+                          confirmButtonText: "Registrarse",
+                          cancelButtonText: "Iniciar Sesión",
                           confirmButtonColor: "#00bcd4",
+                          cancelButtonColor: "#FEC107",
+                          customClass: {
+                            cancelButton: "swal2-login-button",
+                          },
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            navigate("/register");
+                          } else if (
+                            result.dismiss === Swal.DismissReason.cancel
+                          ) {
+                            navigate("/login");
+                          }
                         });
                         return;
                       }

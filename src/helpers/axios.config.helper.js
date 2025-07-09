@@ -5,7 +5,9 @@ const clientAxios = axios.create({
     import.meta.env.MODE === "development"
       ? import.meta.env.VITE_URL_BACK_LOCAL + "/api"
       : import.meta.env.VITE_URL_BACK_DEPLOY + "/api",
+
   withCredentials: true,
+
 });
 
 export const getAuthHeaders = () => {

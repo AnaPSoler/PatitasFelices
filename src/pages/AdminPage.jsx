@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, ListGroup } from "react-bootstrap";
 import clientAxios, { getAuthHeaders } from "../helpers/axios.config.helper";
 import banner from "../assets/banner.png";
 import "./AdminPage.css";
+import { FaHandsClapping } from "react-icons/fa6";
 
 const AdminPage = () => {
   const [turnosSemana, setTurnosSemana] = useState([]);
@@ -47,7 +48,9 @@ const AdminPage = () => {
 
       <h1 className="admin-title">
         <span className="bienvenidos">Bienvenidos</span>{" "}
-        <span className="veterinarios">Veterinarios</span>
+        <span className="veterinarios">
+          Veterinarios <FaHandsClapping />
+        </span>
       </h1>
 
       <Container className="mt-4">

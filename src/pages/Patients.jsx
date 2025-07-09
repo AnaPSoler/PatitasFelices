@@ -1,11 +1,26 @@
 import { useEffect, useState } from "react";
-import { Container, Card, Row, Col, Button, Pagination } from "react-bootstrap";
+import {
+  Container,
+  Card,
+  Row,
+  Col,
+  Button,
+  Pagination,
+  Form,
+  Modal,
+} from "react-bootstrap";
+import Swal from "sweetalert2";
 import clientAxios, { getAuthHeaders } from "../helpers/axios.config.helper";
 import "./Patients.css";
+import { PiDogFill } from "react-icons/pi";
 
 const Patients = () => {
   const [pacientes, setPacientes] = useState([]);
   const [paginaActual, setPaginaActual] = useState(1);
+  const [busqueda, setBusqueda] = useState("");
+  const [modalPaciente, setModalPaciente] = useState(null);
+  const [formulario, setFormulario] = useState({});
+
   const pacientesPorPagina = 6;
 
   const obtenerPacientes = async () => {
@@ -21,17 +36,78 @@ const Patients = () => {
     obtenerPacientes();
   }, []);
 
+  const eliminarPaciente = async (id) => {
+    const confirm = await Swal.fire({
+      title: "¿Eliminar ficha?",
+      text: "Esta acción no se puede deshacer",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, eliminar",
+    });
+
+    if (confirm.isConfirmed) {
+      try {
+        await clientAxios.delete(`/pacientes/${id}`, getAuthHeaders());
+        Swal.fire("Eliminado", "Ficha eliminada con éxito", "success");
+        obtenerPacientes();
+      } catch (error) {
+        Swal.fire("Error", "No se pudo eliminar la ficha", "error");
+      }
+    }
+  };
+
+  const abrirModalEdicion = (paciente) => {
+    setFormulario({ ...paciente });
+    setModalPaciente(paciente);
+  };
+
+  const manejarCambio = (e) => {
+    setFormulario({ ...formulario, [e.target.name]: e.target.value });
+  };
+
+  const guardarCambios = async () => {
+    try {
+      await clientAxios.put(
+        `/pacientes/${formulario._id}`,
+        formulario,
+        getAuthHeaders()
+      );
+      Swal.fire("Actualizado", "Ficha actualizada correctamente", "success");
+      setModalPaciente(null);
+      obtenerPacientes();
+    } catch (error) {
+      Swal.fire("Error", "No se pudo actualizar la ficha", "error");
+    }
+  };
+
+  const pacientesFiltrados = pacientes.filter((p) =>
+    p.nombreMascota.toLowerCase().includes(busqueda.toLowerCase())
+  );
+
   const indexInicio = (paginaActual - 1) * pacientesPorPagina;
-  const pacientesActuales = pacientes.slice(
+  const pacientesActuales = pacientesFiltrados.slice(
     indexInicio,
     indexInicio + pacientesPorPagina
   );
 
-  const totalPaginas = Math.ceil(pacientes.length / pacientesPorPagina);
+  const totalPaginas = Math.ceil(
+    pacientesFiltrados.length / pacientesPorPagina
+  );
 
   return (
     <Container className="py-4">
-      <h2 className="text-center mb-4">Fichas de Pacientes</h2>
+      <h2 className="text-center mb-4">
+        Fichas de Pacientes <PiDogFill />
+      </h2>
+
+      <Form.Control
+        type="text"
+        placeholder="Buscar por nombre de mascota"
+        className="mb-4"
+        value={busqueda}
+        onChange={(e) => setBusqueda(e.target.value)}
+      />
+
       <Row>
         {pacientesActuales.map((p) => (
           <Col md={6} lg={4} key={p._id} className="mb-4">
@@ -63,27 +139,153 @@ const Patients = () => {
                 <p>
                   <strong>Peso:</strong> {p.peso} kg
                 </p>
+                <div className="d-flex justify-content-between mt-3">
+                  <Button
+                    className="btn-modificar"
+                    size="sm"
+                    onClick={() => abrirModalEdicion(p)}
+                  >
+                    Modificar
+                  </Button>
+                  <Button
+                    className="btn-eliminar"
+                    size="sm"
+                    onClick={() => eliminarPaciente(p._id)}
+                  >
+                    Eliminar
+                  </Button>
+                </div>
               </Card.Body>
             </Card>
           </Col>
         ))}
       </Row>
 
-      {totalPaginas > 1 && (
-        <div className="d-flex justify-content-center">
-          <Pagination>
-            {[...Array(totalPaginas)].map((_, i) => (
-              <Pagination.Item
-                key={i + 1}
-                active={paginaActual === i + 1}
-                onClick={() => setPaginaActual(i + 1)}
-              >
-                {i + 1}
-              </Pagination.Item>
-            ))}
-          </Pagination>
-        </div>
-      )}
+      <div className="d-flex justify-content-center mt-3">
+        {[...Array(totalPaginas)].map((_, index) => (
+          <Button
+            key={index}
+            variant={paginaActual === index + 1 ? "info" : "outline-info"}
+            size="sm"
+            onClick={() => setPaginaActual(index + 1)}
+            className="mx-1 paginacion"
+          >
+            {index + 1}
+          </Button>
+        ))}
+      </div>
+
+      <Modal
+        show={!!modalPaciente}
+        onHide={() => setModalPaciente(null)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Editar Ficha</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-2">
+              <Form.Label>Nombre Mascota</Form.Label>
+              <Form.Control
+                name="nombreMascota"
+                value={formulario.nombreMascota || ""}
+                onChange={manejarCambio}
+              />
+            </Form.Group>
+            <Form.Group className="mb-2">
+              <Form.Label>Nombre Dueño</Form.Label>
+              <Form.Control
+                name="nombreDuenio"
+                value={formulario.nombreDuenio || ""}
+                onChange={manejarCambio}
+              />
+            </Form.Group>
+            <Form.Group className="mb-2">
+              <Form.Label>Apellido Dueño</Form.Label>
+              <Form.Control
+                name="apellidoDuenio"
+                value={formulario.apellidoDuenio || ""}
+                onChange={manejarCambio}
+              />
+            </Form.Group>
+            <Form.Group className="mb-2">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                name="emailDuenio"
+                value={formulario.emailDuenio || ""}
+                onChange={manejarCambio}
+              />
+            </Form.Group>
+            <Form.Group className="mb-2">
+              <Form.Label>Teléfono</Form.Label>
+              <Form.Control
+                name="telefonoDuenio"
+                value={formulario.telefonoDuenio || ""}
+                onChange={manejarCambio}
+              />
+            </Form.Group>
+            <Form.Group className="mb-2">
+              <Form.Label>Especie</Form.Label>
+              <Form.Control
+                name="especie"
+                value={formulario.especie || ""}
+                onChange={manejarCambio}
+              />
+            </Form.Group>
+            <Form.Group className="mb-2">
+              <Form.Label>Raza</Form.Label>
+              <Form.Control
+                name="raza"
+                value={formulario.raza || ""}
+                onChange={manejarCambio}
+              />
+            </Form.Group>
+            <Form.Group className="mb-2">
+              <Form.Label>Sexo</Form.Label>
+              <Form.Control
+                name="sexo"
+                value={formulario.sexo || ""}
+                onChange={manejarCambio}
+              />
+            </Form.Group>
+            <Form.Group className="mb-2">
+              <Form.Label>Edad</Form.Label>
+              <Form.Control
+                type="number"
+                name="edad"
+                value={formulario.edad || ""}
+                onChange={manejarCambio}
+              />
+            </Form.Group>
+            <Form.Group className="mb-2">
+              <Form.Label>Peso</Form.Label>
+              <Form.Control
+                type="number"
+                name="peso"
+                value={formulario.peso || ""}
+                onChange={manejarCambio}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setModalPaciente(null)}>
+            Cancelar
+          </Button>
+          <Button variant="primary" onClick={guardarCambios}>
+            Guardar Cambios
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <div className="banner-desktop mt-4">
+        <img
+          src="/public/img/banner2.png"
+          alt="Banner promocional"
+          className="banner w-100"
+        />
+      </div>
     </Container>
   );
 };
