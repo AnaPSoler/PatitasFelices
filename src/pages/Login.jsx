@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Container, Card, InputGroup } from "react-bootstrap";
 import Swal from "sweetalert2";
-import axios from "axios";
-import "./Login.css";
 import { FaEnvelope, FaLock } from "react-icons/fa";
+import clientAxios from "../helpers/axios.config.helper"; // ✅ usamos configuración centralizada
+import "./Login.css";
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -43,10 +43,7 @@ const Login = () => {
     if (!validate()) return;
 
     try {
-      const response = await axios.post(
-        "http://localhost:3001/api/auth/login",
-        form
-      );
+      const response = await clientAxios.post("/api/auth/login", form); // ✅ usamos baseURL dinámica
 
       const { token, user } = response.data;
 
@@ -71,7 +68,7 @@ const Login = () => {
 
   return (
     <Container className="form-container d-flex align-items-center justify-content-center">
-      <Card className="form-card animate__animated animate__fadeIn">
+      <Card className="form-card animate_animated animate_fadeIn">
         <Card.Body>
           <Card.Title
             className="titulo text-center mb-4"

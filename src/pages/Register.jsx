@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Form, Button, Container, Card, InputGroup } from "react-bootstrap";
 import Swal from "sweetalert2";
-import axios from "axios";
-import "./Register.css";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import clientAxios from "../helpers/axios.config.helper"; 
+import "./Register.css";
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -67,7 +67,8 @@ const Register = () => {
     if (!validate()) return;
 
     try {
-      await axios.post("http://localhost:3001/api/auth/register", form);
+      await clientAxios.post("/api/auth/register", form); 
+
       Swal.fire("Registro exitoso", "Ya podés iniciar sesión", "success");
       setForm({ nombre: "", email: "", password: "", aceptaTerminos: false });
     } catch (error) {
@@ -81,7 +82,7 @@ const Register = () => {
 
   return (
     <Container className="form-container d-flex align-items-center justify-content-center">
-      <Card className="form-card animate__animated animate__fadeIn">
+      <Card className="form-card animate_animated animate_fadeIn">
         <Card.Body>
           <Card.Title
             className="titulo text-center mb-4"
@@ -109,6 +110,7 @@ const Register = () => {
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
+
             <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
               <InputGroup>
@@ -128,6 +130,7 @@ const Register = () => {
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
+
             <Form.Group className="mb-3">
               <Form.Label>Contraseña</Form.Label>
               <InputGroup>
@@ -147,6 +150,7 @@ const Register = () => {
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
+
             <Form.Group className="mb-4">
               <Form.Check
                 type="checkbox"
@@ -166,6 +170,7 @@ const Register = () => {
                 feedbackType="invalid"
               />
             </Form.Group>
+
             <Button variant="info" type="submit" className="btn-personalizado">
               Registrarme
             </Button>
