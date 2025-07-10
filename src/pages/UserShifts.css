@@ -47,7 +47,8 @@
   font-weight: 400;  
   transition: background-color 0.3s ease;
   display: block;
-  margin: 0 auto;  
+  margin: 0 auto;    
+  width: 200px;
 }
 
 .btn.btn-info:hover {
@@ -71,11 +72,6 @@
 .estilo-texto {
   color: #606060 !important;
   font-family: "Segoe UI Variable", "Segoe UI", Inter, sans-serif;
-}
-
-.fecha {
-  padding-top: 45px !important;
-  margin-right: 10px !important; 
 }
 
 .texto-color {

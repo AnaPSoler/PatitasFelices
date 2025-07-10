@@ -50,16 +50,28 @@
   margin-top: 2rem;
 }
 
-.btn-modificar {
+.btn-eliminar {
   background-color: #009688 !important ;
   color: white;
   border-color: #009688 !important;
 }
 
+.btn-eliminar:hover {
+  background-color: #ffc107 !important;
+  border-color: #ffc107 !important;
+  color: #606060 !important;  
+}
+
+.btn-modificar {
+  background-color: #00bcd4 !important ;
+  color: white;
+  border-color: #00bcd4 !important;
+}
+
 .btn-modificar:hover {
   background-color: #ffc107 !important;
   border-color: #ffc107 !important;
-  color: #606060 !important;
+  color: #606060 !important;  
 }
 
 .banner-desktop {

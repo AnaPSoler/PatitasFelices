@@ -31,7 +31,7 @@ const NavbarC = () => {
           <img
             src={logo}
             height="75"
-            className="logo-brand d-inline-block align-top"
+            className="logo-brand d-inline-block align-top "
             alt="Logo Patitas Felices"
           />
         </NavLink>

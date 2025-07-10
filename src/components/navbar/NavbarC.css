@@ -29,6 +29,8 @@
 }
 .logo-brand {
   transition: transform 0.3s ease;
+  width: 125px;
+  height: 125px;
 }
 .logo-brand:hover {
   transform: scale(1.05) rotate(-2deg);

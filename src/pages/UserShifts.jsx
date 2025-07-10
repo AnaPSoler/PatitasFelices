@@ -158,49 +158,49 @@ const UserShifts = () => {
                     required
                   />
                 </Form.Group>
-                <Row className="mb-3">
-                  <Col>
-                    <Form.Label>Veterinario</Form.Label>
-                    <Form.Select
-                      value={veterinario}
-                      onChange={(e) => setVeterinario(e.target.value)}
-                      required
-                      className="estilo-texto"
-                    >
-                      <option value="">Seleccionar</option>
-                      <option value="Dra. Romero">Dra. Romero</option>
-                      <option value="Dr. López">Dr. López</option>
-                    </Form.Select>
-                  </Col>
-                  <Col>
-                    <Form.Label className="fecha">Fecha</Form.Label>
-                    <DatePicker
-                      selected={fecha}
-                      onChange={(date) => setFecha(date)}
-                      dateFormat="dd/MM/yyyy"
-                      className="form-control datepicker-custom"
-                      minDate={new Date()}
-                      placeholderText="Elegí una fecha"
-                      required
-                      filterDate={(date) => !estaDeshabilitado(date)}
-                      dayClassName={(date) => {
-                        const formateada = new Date(date).toDateString();
-                        const turnosDelDia = turnosTotales.filter(
-                          (t) => new Date(t.fecha).toDateString() === formateada
-                        ).length;
-                        const esFinDeSemana =
-                          date.getDay() === 0 || date.getDay() === 6;
-                        if (
-                          esFinDeSemana ||
-                          turnosDelDia >= horariosDisponibles.length
-                        ) {
-                          return "fecha-ocupada";
-                        }
-                        return undefined;
-                      }}
-                    />
-                  </Col>
-                </Row>
+                <Form.Group className="mb-3">
+                  <Form.Label>Veterinario</Form.Label>
+                  <Form.Select
+                    value={veterinario}
+                    onChange={(e) => setVeterinario(e.target.value)}
+                    required
+                    className="estilo-texto"
+                  >
+                    <option value="">Seleccionar</option>
+                    <option value="Dra. Romero">Dra. Romero</option>
+                    <option value="Dr. López">Dr. López</option>
+                  </Form.Select>
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                  <Form.Label >Fecha</Form.Label>
+                  <DatePicker
+                    selected={fecha}
+                    onChange={(date) => setFecha(date)}
+                    dateFormat="dd/MM/yyyy"
+                    className="form-control datepicker-custom ms-3"
+                    minDate={new Date()}
+                    placeholderText="Elegí una fecha"
+                    required
+                    filterDate={(date) => !estaDeshabilitado(date)}
+                    dayClassName={(date) => {
+                      const formateada = new Date(date).toDateString();
+                      const turnosDelDia = turnosTotales.filter(
+                        (t) => new Date(t.fecha).toDateString() === formateada
+                      ).length;
+                      const esFinDeSemana =
+                        date.getDay() === 0 || date.getDay() === 6;
+                      if (
+                        esFinDeSemana ||
+                        turnosDelDia >= horariosDisponibles.length
+                      ) {
+                        return "fecha-ocupada";
+                      }
+                      return undefined;
+                    }}
+                  />
+                </Form.Group>
+
                 <Form.Group className="mb-3">
                   <Form.Label>Horario</Form.Label>
                   <Form.Select
