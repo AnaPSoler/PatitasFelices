@@ -176,8 +176,7 @@ const Patients = () => {
           </Button>
         ))}
       </div>
-
-      {/* Modal de edición */}
+      
       <Modal
         show={!!modalPaciente}
         onHide={() => setModalPaciente(null)}

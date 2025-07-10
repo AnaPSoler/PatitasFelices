@@ -46,8 +46,7 @@ const AdminShifts = () => {
       const nuevosTurnos = turnos.filter((t) => t._id !== id);
       setTurnos(nuevosTurnos);
       setTurnoSeleccionado(null);
-
-      // Evita que se quede en una página vacía
+  
       const totalPaginas = Math.ceil(nuevosTurnos.length / turnosPorPagina);
       if (paginaActual > totalPaginas) setPaginaActual(totalPaginas || 1);
 
