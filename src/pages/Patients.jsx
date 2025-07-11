@@ -82,9 +82,10 @@ const Patients = () => {
     }
   };
 
-  const pacientesFiltrados = pacientes.filter((p) =>
-    p.nombreMascota.toLowerCase().includes(busqueda.toLowerCase())
-  );
+  const pacientesFiltrados = pacientes.filter((p) => {
+    const nombreCompleto = `${p.nombreDuenio} ${p.apellidoDuenio}`.toLowerCase();
+    return nombreCompleto.includes(busqueda.toLowerCase());
+  });
 
   const indexInicio = (paginaActual - 1) * pacientesPorPagina;
   const pacientesActuales = pacientesFiltrados.slice(
@@ -104,7 +105,7 @@ const Patients = () => {
 
       <Form.Control
         type="text"
-        placeholder="Buscar por nombre de mascota"
+        placeholder="Buscar por nombre del dueño"
         className="mb-4"
         value={busqueda}
         onChange={(e) => setBusqueda(e.target.value)}
@@ -176,7 +177,7 @@ const Patients = () => {
           </Button>
         ))}
       </div>
-      
+
       <Modal
         show={!!modalPaciente}
         onHide={() => setModalPaciente(null)}

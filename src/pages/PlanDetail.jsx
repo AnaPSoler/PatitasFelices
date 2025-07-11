@@ -169,6 +169,16 @@ const PlanDetail = () => {
                 ))}
               </ul>
 
+              <div className="d-flex justify-content-center gap-2 my-3 flex-wrap">
+                <Button
+                  type="button"
+                  className="cart-button py-3 px-4"
+                  onClick={handleAddToCart}
+                >
+                  Agregar al carrito
+                </Button>
+              </div>
+
               <Form ref={form} onSubmit={handleSubmit}>
                 <input type="hidden" name="plan" value={plan.nombre} />
                 <Form.Group className="mb-3">
@@ -212,14 +222,6 @@ const PlanDetail = () => {
                 </Form.Group>
 
                 <div className="d-flex justify-content-center gap-2 mt-3 flex-wrap">
-                  <Button
-                    type="button"
-                    className="cart-button"
-                    onClick={handleAddToCart}
-                  >
-                    Agregar al carrito
-                  </Button>
-
                   <Button type="submit" className="plan-button">
                     Enviar consulta
                   </Button>

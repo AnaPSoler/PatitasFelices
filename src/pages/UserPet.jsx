@@ -67,6 +67,7 @@ const UserPet = () => {
       });
 
       obtenerMascotas();
+      obtenerDatosDelDueno(); 
     } catch (error) {
       Swal.fire(
         "Error",
@@ -93,8 +94,33 @@ const UserPet = () => {
     }
   };
 
+  const obtenerDatosDelDueno = async () => {
+    try {
+      const token = sessionStorage.getItem("token");
+      if (!token) return;
+
+      const { data } = await clientAxios.get(
+        "/pacientes/datos-duenio",
+        getAuthHeaders()
+      );
+
+      if (data && data.nombreDuenio) {
+        setForm((prevForm) => ({
+          ...prevForm,
+          nombreDuenio: data.nombreDuenio,
+          apellidoDuenio: data.apellidoDuenio,
+          emailDuenio: data.emailDuenio,
+          telefonoDuenio: data.telefonoDuenio,
+        }));
+      }
+    } catch (error) {
+      console.log("El usuario aún no tiene mascotas cargadas");
+    }
+  };
+
   useEffect(() => {
     obtenerMascotas();
+    obtenerDatosDelDueno();
   }, []);
 
   const mascotaActual = mascotas.slice(

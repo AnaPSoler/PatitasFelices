@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import clientAxios, { getAuthHeaders } from "../helpers/axios.config.helper";
-import { FaTimesCircle } from "react-icons/fa";
 import "./UserShifts.css";
 
 const UserShifts = () => {
@@ -15,8 +14,9 @@ const UserShifts = () => {
   const [detalle, setDetalle] = useState("");
   const [horariosOcupados, setHorariosOcupados] = useState([]);
   const [turnosTotales, setTurnosTotales] = useState([]);
-  const [turnoConfirmado, setTurnoConfirmado] = useState(null);
-  const [miTurno, setMiTurno] = useState(null);
+  const [misTurnos, setMisTurnos] = useState([]);
+  const [paginaActual, setPaginaActual] = useState(1);
+  const turnosPorPagina = 1;
 
   const horariosDisponibles = [
     "08:00",
@@ -39,13 +39,9 @@ const UserShifts = () => {
 
   const cargarTurnos = async () => {
     try {
-      const token = sessionStorage.getItem("token");
-      if (!token) return;
-
       const { data } = await clientAxios.get("/shifts", getAuthHeaders());
       if (Array.isArray(data)) {
         setTurnosTotales(data);
-
         if (fecha && veterinario) {
           const ocupados = data
             .filter(
@@ -56,31 +52,24 @@ const UserShifts = () => {
             .map((t) => t.hora);
           setHorariosOcupados(ocupados);
         }
-      } else {
-        console.error("❌ Los turnos no llegaron como array:", data);
       }
     } catch (error) {
       console.error("Error al cargar turnos ocupados", error);
     }
   };
 
-  const obtenerMiTurno = async () => {
+  const obtenerMisTurnos = async () => {
     try {
-      const token = sessionStorage.getItem("token");
-      if (!token) return;
-
       const { data } = await clientAxios.get("/shifts/mios", getAuthHeaders());
-      if (Array.isArray(data) && data.length > 0) {
-        setMiTurno(data[data.length - 1]);
-      }
+      if (Array.isArray(data)) setMisTurnos(data);
     } catch (error) {
-      console.log("No se encontró turno registrado", error);
+      console.log("Error al obtener mis turnos", error);
     }
   };
 
   useEffect(() => {
     cargarTurnos();
-    obtenerMiTurno();
+    obtenerMisTurnos();
   }, [fecha, veterinario]);
 
   const estaDeshabilitado = (date) => {
@@ -98,7 +87,6 @@ const UserShifts = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!mascota || !veterinario || !fecha || !hora) {
       return Swal.fire(
         "Campos incompletos",
@@ -108,25 +96,23 @@ const UserShifts = () => {
     }
 
     try {
-      const token = sessionStorage.getItem("token");
-      if (!token) throw new Error("Sesión expirada. Por favor iniciá sesión.");
-
-      const response = await clientAxios.post(
+      await clientAxios.post(
         "/shifts",
         { mascota, veterinario, fecha, hora, detalle },
         getAuthHeaders()
       );
-
-      Swal.fire("Turno reservado", response.data.msg, "success");
-
-      setTurnoConfirmado({ mascota, veterinario, fecha, hora, detalle });
+      Swal.fire(
+        "Turno reservado",
+        "Tu turno fue registrado correctamente",
+        "success"
+      );
       setMascota("");
       setVeterinario("");
       setFecha(null);
       setHora("");
       setDetalle("");
       cargarTurnos();
-      obtenerMiTurno();
+      obtenerMisTurnos();
     } catch (error) {
       Swal.fire(
         "Error",
@@ -138,23 +124,42 @@ const UserShifts = () => {
     }
   };
 
-  const turnoActual = turnoConfirmado || miTurno;
+  const esHoy = fecha && new Date().toDateString() === fecha.toDateString();
+
+  const horariosHabilitados = horariosDisponibles.map((h) => {
+    const [hH, hM] = h.split(":");
+    const ahora = new Date();
+    const horaActual = ahora.getHours();
+    const minutosActuales = ahora.getMinutes();
+    const deshabilitado =
+      horariosOcupados.includes(h) ||
+      (esHoy &&
+        (parseInt(hH) < horaActual ||
+          (parseInt(hH) === horaActual && parseInt(hM) <= minutosActuales)));
+    return { hora: h, deshabilitado };
+  });
+
+  const totalPaginas = Math.ceil(misTurnos.length / turnosPorPagina);
+  const turnoVisible = misTurnos.slice(
+    (paginaActual - 1) * turnosPorPagina,
+    paginaActual * turnosPorPagina
+  )[0];
 
   return (
     <Container className="form-container">
       <Row className="g-4 flex-column flex-md-row">
-        <Col md={8} className="w-100">
-          <Card className="form-card animate__animated animate__fadeIn w-100">
+        <Col md={6}>
+          <Card className="form-card animate__animated animate__fadeIn">
             <Card.Body>
               <Card.Title className="titulo">Reservar Turno</Card.Title>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
-                  <Form.Label>Nombre de la mascota</Form.Label>
+                  <Form.Label>Mascota</Form.Label>
                   <Form.Control
                     type="text"
                     value={mascota}
                     onChange={(e) => setMascota(e.target.value)}
-                    placeholder="Ej: Firulais"
+                    placeholder="Ej: Max"
                     required
                   />
                 </Form.Group>
@@ -164,81 +169,57 @@ const UserShifts = () => {
                     value={veterinario}
                     onChange={(e) => setVeterinario(e.target.value)}
                     required
-                    className="estilo-texto"
                   >
                     <option value="">Seleccionar</option>
                     <option value="Dra. Romero">Dra. Romero</option>
                     <option value="Dr. López">Dr. López</option>
                   </Form.Select>
                 </Form.Group>
-
-                <Form.Group className="mb-3">
-                  <Form.Label >Fecha</Form.Label>
+                <Form.Group className="mb-3 me-5">
+                  <Form.Label>Fecha</Form.Label>
                   <DatePicker
                     selected={fecha}
                     onChange={(date) => setFecha(date)}
                     dateFormat="dd/MM/yyyy"
-                    className="form-control datepicker-custom ms-3"
+                    className="form-control"
                     minDate={new Date()}
                     placeholderText="Elegí una fecha"
                     required
                     filterDate={(date) => !estaDeshabilitado(date)}
-                    dayClassName={(date) => {
-                      const formateada = new Date(date).toDateString();
-                      const turnosDelDia = turnosTotales.filter(
-                        (t) => new Date(t.fecha).toDateString() === formateada
-                      ).length;
-                      const esFinDeSemana =
-                        date.getDay() === 0 || date.getDay() === 6;
-                      if (
-                        esFinDeSemana ||
-                        turnosDelDia >= horariosDisponibles.length
-                      ) {
-                        return "fecha-ocupada";
-                      }
-                      return undefined;
-                    }}
                   />
                 </Form.Group>
-
                 <Form.Group className="mb-3">
-                  <Form.Label>Horario</Form.Label>
+                  <Form.Label>Hora</Form.Label>
                   <Form.Select
                     value={hora}
                     onChange={(e) => setHora(e.target.value)}
                     required
-                    className="estilo-texto"
                   >
                     <option value="">Seleccionar</option>
-                    {horariosDisponibles.map((h) => (
+                    {horariosHabilitados.map(({ hora, deshabilitado }) => (
                       <option
-                        key={h}
-                        value={h}
-                        disabled={horariosOcupados.includes(h)}
-                        className={
-                          horariosOcupados.includes(h) ? "horario-ocupado" : ""
-                        }
+                        key={hora}
+                        value={hora}
+                        disabled={deshabilitado}
+                        className={deshabilitado ? "text-muted" : ""}
                       >
-                        {h} {horariosOcupados.includes(h) ? "(Ocupado)" : ""}
+                        {hora} {deshabilitado ? "(No disponible)" : ""}
                       </option>
                     ))}
                   </Form.Select>
                 </Form.Group>
-                <Form.Group className="mb-4">
+                <Form.Group className="mb-3">
                   <Form.Label>Detalle</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={3}
                     value={detalle}
                     onChange={(e) => setDetalle(e.target.value)}
-                    placeholder="Descripción del motivo de consulta"
+                    placeholder="Motivo de la consulta"
                   />
                 </Form.Group>
                 <div className="text-center">
-                  <Button
-                    type="submit"
-                    className="btn btn-info text-align-center text-white"
-                  >
+                  <Button type="submit" className="btn btn-info text-white">
                     Confirmar Turno
                   </Button>
                 </div>
@@ -247,30 +228,52 @@ const UserShifts = () => {
           </Card>
         </Col>
 
-        <Col md={4} className="w-100">
-          {turnoActual && (
-            <Card className="turno-confirmado mt-4 mt-md-0">
-              <Card.Body>
-                <Card.Title className="texto-color">🗓️ Mi Turno</Card.Title>
-                <p>
-                  <strong>Mascota:</strong> {turnoActual.mascota}
-                </p>
-                <p>
-                  <strong>Veterinario:</strong> {turnoActual.veterinario}
-                </p>
-                <p>
-                  <strong>Fecha:</strong>{" "}
-                  {new Date(turnoActual.fecha).toLocaleDateString()}
-                </p>
-                <p>
-                  <strong>Hora:</strong> {turnoActual.hora}
-                </p>
-                <p>
-                  <strong>Detalle:</strong> {turnoActual.detalle || "-"}
-                </p>
-              </Card.Body>
-            </Card>
-          )}
+        <Col md={6}>
+          <Card className="mt-4 mt-md-0">
+            <Card.Body>
+              <Card.Title className="texto-color">📅 Mis Turnos</Card.Title>
+              {turnoVisible ? (
+                <>
+                  <p>
+                    <strong>Mascota:</strong> {turnoVisible.mascota}
+                  </p>
+                  <p>
+                    <strong>Veterinario:</strong> {turnoVisible.veterinario}
+                  </p>
+                  <p>
+                    <strong>Fecha:</strong>{" "}
+                    {new Date(turnoVisible.fecha).toLocaleDateString()}
+                  </p>
+                  <p>
+                    <strong>Hora:</strong> {turnoVisible.hora}
+                  </p>
+                  <p>
+                    <strong>Detalle:</strong> {turnoVisible.detalle || "-"}
+                  </p>
+
+                  {totalPaginas > 1 && (
+                    <div className="d-flex justify-content-center mt-3">
+                      {[...Array(totalPaginas)].map((_, index) => (
+                        <Button
+                          key={index}
+                          variant={
+                            paginaActual === index + 1 ? "info" : "outline-info"
+                          }
+                          size="sm"
+                          onClick={() => setPaginaActual(index + 1)}
+                          className="mx-1"
+                        >
+                          {index + 1}
+                        </Button>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <p>No hay turnos registrados.</p>
+              )}
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
     </Container>
